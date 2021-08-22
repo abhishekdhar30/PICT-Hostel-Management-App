@@ -1,0 +1,72 @@
+
+       <%-include("header")-%>
+
+        <div class="container my-5">
+            <div class="row justify-content-center text-center mb-4">
+                <h2>Login</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12">
+                    <form method="POST" action="/login">
+                        
+                        <div class="row mb-4">
+                           
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="email" id="email" class="form-control" name="email" />
+                                    <label class="form-label" for="email">Email</label>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col">
+                                <div class="form-outline">
+                                    <input type="password" id="password" class="form-control" name="password" />
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+                            </div>
+
+                            <diV class="col">
+                            <select id="role" name="role">
+                                 <option value="admin">Admin</option>
+                                 <option value="warden">Warden</option>
+                                 <option value="student">Student</option>
+                               </select>
+                       </diV>
+                        <!-- The below two fields will automatically calculated from the file -->
+                        <!-- <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="number" id="totalEntries" class="form-control" />
+                                    <label class="form-label" for="totalEntries">Total number of entries in the file</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="number" id="emailCount" class="form-control" />
+                                    <label class="form-label" for="emailCount">Total e-mail count in the file</label>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+
+
+
+                        <!-- Also collect date and time of form submission to store in database and display it on getData page -->
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-danger btn-block mb-4">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- JS -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+    </body>
+</html>

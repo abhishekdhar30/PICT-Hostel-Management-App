@@ -11,26 +11,31 @@ const userSchema = mongoose.Schema(
       type: String,
       // required: true,
     },
-    domain: {
-      type: String,
+    room:{
+      type:String,
     },
-    area: {
-      type: String,
+    status:{
+      type:String,
     },
-    message: {
-      type: String,
+    fathersemail:{
+      type:String,
     },
-    totalcount: {
-      type: Number,
-      default: 0,
+    email:{
+      type:String,
     },
-    totalEmails: {
-      type: Number,
-      default: 0,
+    address:{
+      type:String
     },
-    filename:{
+    city:{
+      type:String
+    },
+    contact:{
+      type:String
+    },
+    fatherscontact:{
       type:String
     }
+   
   },
   {
     timestamps: true,

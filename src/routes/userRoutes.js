@@ -1,8 +1,8 @@
 
 const express = require("express");
-const addstudent = require("../controllers/addstudent");
+const {addstudent, postaddstudent} = require("../controllers/addstudent");
 const analysis = require("../controllers/analysis");
-const attendance = require("../controllers/attendance");
+const {attendance, postattendance} = require("../controllers/attendance");
 const register = require("../controllers/register");
 const login = require("../controllers/login");
 const home = require("../controllers/home");
@@ -12,14 +12,14 @@ const home = require("../controllers/home");
 const router=express.Router();
 
 
-router.route("/attendance").get(attendance);
+router.route("/attendance").get(attendance).post(postattendance);
 
 router.route("/").get(home);
 router.route("/login").get(login);
 
 router.route("/analysis").get(analysis);
 
-router.route("/addstudent").get(addstudent);
+router.route("/addstudent").get(addstudent).post(postaddstudent);
 router.route("/register").get(register);
 
 

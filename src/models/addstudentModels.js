@@ -14,9 +14,6 @@ const userSchema = mongoose.Schema(
     room:{
       type:String,
     },
-    status:{
-      type:String,
-    },
     fathersemail:{
       type:String,
     },

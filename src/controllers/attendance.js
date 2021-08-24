@@ -32,25 +32,49 @@ const postattendance = async function (req, res) {
   if(attendance)
   {
       const allAttendance = attendance.attendance;
+        
+   
+      if(typeof(emails)=="string")
+      {
+        let count=0; 
+           for (const [key, value] of allAttendance) {
+             if(emails===key)
+             {
+               allAttendance.set(key,status);
+               count+=1;
+              
+             }
+           }
 
-      
-         for (const key of allAttendance.keys()) {
-          
-            for(let i=0;i<emails.length;i++)
-            {
-                if(emails[i]==key)
-                {
-                  
-                  allAttendance.set(key,status[i]);
-                }
+           if(count===1)
+           {
+             allAttendance.set(emails, status);
+           }
+         
+      }
+      else
+      {
+        let f=0;
+        for (const [key, value] of allAttendance) {
+          for (let i = 0; i < emails.length; i++) {
+              if (emails[i] === key) {
+              allAttendance.set(key, status[i]);
+              f+=1;
+                
             }
-         }
+          }
+        }
+        if(f===1)
+        {
+             for (let i = 0; i < emails.length; i++) {
+                allAttendance.set(emails[i], status[i]);
+             }
+        }
+      }
         
          attendance.attendance=allAttendance;
-          await attendance.save();
+         await attendance.save();
              
-
-      // })
   
 
     
@@ -63,7 +87,7 @@ const postattendance = async function (req, res) {
     attendance: {},
   });
 
-  console.log(typeof(emails));
+  // console.log(typeof(emails));
 
   if(typeof(emails)=="string")
   {

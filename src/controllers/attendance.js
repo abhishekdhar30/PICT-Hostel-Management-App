@@ -8,9 +8,24 @@ const attendance = function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("attendance", { users: user });
+
+
+     const date = Date().toString().substring(0, 15);
+     Attendance.findOne({ date: date }, function (err, person) {
+       if (err) {
+         console.log(err);
+       } else {
+         res.render("attendance", { dailyattendance: person.attendance, users: user});
+       }
+     });
+
+
+      // res.render("attendance", { users: user });
     }
   });
+
+
+
 
  
 

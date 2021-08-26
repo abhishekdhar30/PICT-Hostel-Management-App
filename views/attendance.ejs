@@ -23,6 +23,7 @@
     </thead>
     <tbody>
        
+             <%if(users!="NULL"){%>
             <%users.forEach(function(user){ %>
                 
             <tr>
@@ -33,16 +34,29 @@
             
              <td><%=user.contact%></td>
 
-             <%if(dailyattendance){%>
+             <%if(dailyattendance!="NULL"){%>
+              <%let flag=0%>
                <% for (const [key, value] of dailyattendance) {%>
                 
-              
+                
                   <%if(user.email==key){%>
+                   <%flag=1%>
                   <td><%=value%></td>
                   <%}%>
             
               <%}%>
-           <%}%>
+              <%if(flag==0){%>
+                   <td>Not Yet Marked</td>
+                <%}%>
+                
+           <%}else{%>
+                 <td>Not Yet Marked</td>
+                 <%flag=0%>
+            <%}%>
+
+            
+
+          
              
             
              <td>
@@ -51,7 +65,14 @@
                 <option value="Hostel">Hostel</option>
                 <option value="Outside">Outside</option>
                 <option value="Home">Home</option>
+                <option value="Holiday">Holiday</option>
+
+                <%if(user.email){%>
                 <input name="email" value="<%=user.email%>" hidden>
+                <%}else{%>
+                <input name="email" value="" hidden>
+                  <%}%>
+                
                </select>
 
              </td>
@@ -60,6 +81,7 @@
              </tr>
            
            <% }); %>
+            <%}%>
             
     </tbody>
 </table>

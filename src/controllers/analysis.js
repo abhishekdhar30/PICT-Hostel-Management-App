@@ -14,24 +14,48 @@ const analysis = function (req, res) {
 
  User.find({}, function (err, user) {
    if (err) {
+     
      console.log(err);
+    
    } else {
+     console.log(user);
      const data = storage.getItem("userInfo");
      console.log(data.date);
-     Attendance.findOne({ date: data.date }, function (err, person) {
-       if (err) {
-         console.log(err);
-       } else {
+    //  Attendance.findOne({ date: data.date }, function (err, person) {
+    //    if (err) {
+    //      console.log(err);
+    //    } else {
+    //      console.log(person);
 
-         res.render("analysis", {
-           dailyattendance: person.attendance,
-           users: user,
-           date: data.date,
-         });
-        }
+      //   if(person&&user)
+      //   {
+
+      //    res.render("analysis", {
+      //      dailyattendance: person.attendance,
+      //      users: user,
+      //      date: data.date,
+      //    });
+      //   }
+       
+      //  else if(person!=NULL)
+      //  {
+      //     res.render("analysis", {
+      //       dailyattendance: person.attendance,
+      //       date: data.date,
+      //     });
+      //  }
+      //  else if(user)
+      //  {
+      //    res.render("analysis", { users: user, date: data.date });
+      //  }
+      //  else
+      //  {
+          res.render("analysis");
+      //  }
+      // }
 
        
-     });
+    //  });
 
    }
  });

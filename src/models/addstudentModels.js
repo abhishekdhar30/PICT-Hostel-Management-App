@@ -31,6 +31,10 @@ const userSchema = mongoose.Schema(
     },
     fatherscontact:{
       type:String
+    },
+    count:{
+      type:Number,
+      default:0
     }
    
   },

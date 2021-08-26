@@ -1,6 +1,7 @@
 const User = require("../models/addstudentModels");
 const Attendance = require("../models/attendance");
-
+const moment = require("moment");
+const sendingMail=require("../nodemailer/mail")
 
 const attendance = function (req, res) {
 
@@ -15,7 +16,31 @@ const attendance = function (req, res) {
        if (err) {
          console.log(err);
        } else {
-         res.render("attendance", { dailyattendance: person.attendance, users: user});
+         if (person && user)
+             {
+
+              res.render("attendance", {
+                dailyattendance: person.attendance,
+                users: user,
+              });
+             }
+
+            else if(person)
+            {
+               res.render("attendance", {
+                 dailyattendance: person.attendance,
+                 users:"NULL"
+               });
+            }
+            else if(user)
+            {
+              res.render("attendance", { users: user,dailyattendance:"NULL"});
+            }
+            else
+            {
+           res.render("attendance", { users: "NULL", dailyattendance: "NULL" });
+          }
+         
        }
      });
 
@@ -56,7 +81,7 @@ const postattendance = async function (req, res) {
              if(emails===key)
              {
                allAttendance.set(key,status);
-               count+=1;
+               count=1;
               
              }
            }
@@ -70,11 +95,13 @@ const postattendance = async function (req, res) {
       else
       {
         let f=0;
-        for (const [key, value] of allAttendance) {
-          for (let i = 0; i < emails.length; i++) {
+        for (const [key, value] of allAttendance) 
+        {
+          for (let i = 0; i < emails.length; i++) 
+          {
               if (emails[i] === key) {
               allAttendance.set(key, status[i]);
-              f+=1;
+              f=1;
                 
             }
           }
@@ -118,6 +145,36 @@ const postattendance = async function (req, res) {
 
   newAttendance.save();
   }
+
+
+
+  User.find({},function(err,users){
+    users.forEach(function(user){
+      let dt1=user.createdAt;
+
+      let dt2=new Date();
+      
+       let diff=Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+        diff=diff-user.count;
+       if(diff==30)
+       {
+         sendingMail(user.fathersemail);
+         User.updateOne(
+           { email: user.email },
+           { $set: { count: user.count + 30 } },
+           function (err, res) {
+             if (!err) {
+               console.log("");
+             } else console.log(err);
+           }
+         );
+       }
+
+    })
+  })
+
+
+
 
   res.redirect("/attendance");
 };

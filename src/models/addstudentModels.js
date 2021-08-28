@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 //structure of database
-const userSchema = mongoose.Schema(
+const userSch = mongoose.Schema(
   {
     name: {
       type: String,
@@ -43,6 +43,6 @@ const userSchema = mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSch);
 
 module.exports = User;

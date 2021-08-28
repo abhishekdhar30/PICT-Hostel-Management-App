@@ -1,4 +1,4 @@
- <%-include("header")-%>
+ <%-include("../header")-%>
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
@@ -92,25 +92,25 @@
     </thead>
     <tbody>
           
-            <%users.forEach(function(user){ %>
+            <%//users.forEach(function(user){ %>
                 
             <tr>
-                <td><%=user.room%></td>
-             <td><%=user.name%></td>
+                <td><%//=user.room%></td>
+             <td><%//=user.name%></td>
 
-               <td><%=user.email%></td>
+               <td><%//=user.email%></td>
             
-             <td><%=user.contact%></td>
+             <td><%//=user.contact%></td>
 
-               <% for (const [key, value] of dailyattendance) {%>
+               <%// for (const [key, value] of dailyattendance) {%>
                 
               
-                  <%if(user.email==key){%>
-                  <td><%=value%></td>
-                  <%}%>
+                  <%//if(user.email==key){%>
+                  <td><%//=value%></td>
+                  <%//}%>
             
-              <%}%>
-              <% }); %>
+              <%//}%>
+              <% //}); %>
             
     </tbody>
 </table>

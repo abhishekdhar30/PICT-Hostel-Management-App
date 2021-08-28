@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>Upload CSV file</title>
-        <link rel="icon" href="img/webghat-logo.png" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link rel="icon" href="img/webghat-logo.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <!-- CSS -->
         <link rel="stylesheet" href="css/mdb.min.css" />
-    </head>
-    <body>
-
-
-
-
-
-
-
+</head>
+<body>
+    
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -33,22 +27,10 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                  
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         
-                        <!-- <li class="nav-item px-2 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">dropdown 2</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#">link 2-1</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">link 2-2</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">link 2-3</a>
-                                </li>
-                            </ul>
-                        </li> -->
+                        <%if(userisloggedin&&Admin){%>
                         <li class="nav-item px-2">
                             <a class="nav-link" href="/attendance">Take Attendance</a>
                         </li>
@@ -61,14 +43,72 @@
                         <li class="nav-item px-2">
                             <a class="nav-link" href="/payment">Payment Section</a>
                         </li>
+                        <%}else{%>
+
+                             <%if(userisloggedin){%>
+                               <li class="nav-item px-2">
+                                <a class="nav-link" href="/viewattendance">View Attendance</a>
+                               </li>
+                               <li class="nav-item px-2">
+                                  <a class="nav-link" href="/viewpayment">View Payment History</a>
+                               </li>
+
+                              <%}%>
+
+                          <%}%>
                       
                     </ul>
+
+                     <%if(!userisloggedin){%>
                     <div class="d-flex align-items-center">
                         <!-- <button type="button" class="btn btn-link px-3 me-2">Login</button> -->
                         <button type="button" class="btn btn-primary me-3" onclick="window.location.href='/login'">Login</button>
                           <button type="button" class="btn btn-primary me-3" onclick="window.location.href='/register'">Register</button>
                         <!-- <a class="btn btn-dark px-3" href="https://github.com/mdbootstrap/mdb-ui-kit" role="button"><i class="fab fa-github"></i></a> -->
                     </div>
+                     <%}else{%>
+                         
+ <ul class="navbar-nav">
+      <!-- Avatar -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle d-flex align-items-center"
+          href=""
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+            class="rounded-circle"
+            height="22"
+            alt=""
+            loading="lazy"
+          />
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="#">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Logout</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+   
+  
+
+ 
+ <%}%>
+
+
                 </div>
             </div>
         </nav>
+
+

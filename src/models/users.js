@@ -1,47 +1,33 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const passportLocalMongoose = require("passport-local-mongoose");
+ const passport = require("passport");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
-     
-    },
-    email: {
-      type: String,
-     
     },
     password: {
       type: String,
-     
+    },
+    isAdmin: {
+      type: String,
+      default: false,
     },
   },
   {
     timestamps: true,
   }
 );
-
 userSchema.plugin(passportLocalMongoose);
 
 
 
-// //for encrpt
-// userSchema.pre("save", async function (next) {
-//   if (!this.isModified("password")) {
-//     next();
-//   }
-
-//   const salt = await bcrypt.genSalt(10);
-//   this.password = await bcrypt.hash(this.password, salt);
-// });
-
-// //for decrypt
-
-// userSchema.methods.matchPassword = async function (enteredPassword) {
-//   return await bcrypt.compare(enteredPassword, this.password);
-// };
-
 const Profile = mongoose.model("Profile", userSchema);
+
+passport.use(Profile.createStrategy());
+passport.serializeUser(Profile.serializeUser());
+passport.deserializeUser(Profile.deserializeUser());
 
 module.exports = Profile;

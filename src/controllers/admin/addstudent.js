@@ -1,8 +1,43 @@
-const User = require("../models/addstudentModels");
-const Attendance = require("../models/attendance");
+const User = require("../../models/addstudentModels");
+const Attendance = require("../../models/attendance");
+const Profile = require("../../models/users");
 
 const addstudent = function (req, res) {
-  res.render("addstudent");
+
+
+  if (!req.isAuthenticated()) {
+    res.render("admin/addstudent", {
+      userisloggedin: false,
+      Admin:false
+    });
+    return;
+  } 
+
+
+
+  
+  Profile.find({isAdmin:true},function(err,users){
+       if(err) console.log(err);
+       else
+       {
+         if(users)
+         {
+               res.render("admin/addstudent", { userisloggedin: true,Admin:true });
+         }
+         else
+         {
+                res.render("admin/addstudent", {
+                  userisloggedin: true,
+                  Admin: false,
+                });
+         }
+       }
+
+  })
+
+  //  if (req.isAuthenticated()) {
+  //    res.render("admin/addstudent", { userisloggedin: true });
+  //  } else res.render("admin/addstudent", { userisloggedin: false });
 };
 
 

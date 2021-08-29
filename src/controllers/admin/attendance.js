@@ -4,18 +4,15 @@ const moment = require("moment");
 const sendingMail = require("../../nodemailer/mail");
 
 const attendance = function (req, res) {
-
- if (!req.isAuthenticated()) {
-   res.render("admin/attendance", {
-     users: "NULL",
-     dailyattendance: "NULL",
-     userisloggedin: false,
-     Admin: false,
-   });
-   return;
- } 
-
-
+  if (!req.isAuthenticated()) {
+    res.render("admin/attendance", {
+      users: "NULL",
+      dailyattendance: "NULL",
+      userisloggedin: false,
+      Admin: false,
+    });
+    return;
+  }
 
   User.find({}, function (err, user) {
     if (err) {
@@ -67,8 +64,11 @@ const postattendance = async function (req, res) {
   const date = Date().toString().substring(0, 15);
   // console.log(req.body);
 
-  let emails = req.body.email;
-  let status = req.body.status;
+ const { roomno, name, contact } = req.body;
+
+ let emails = req.body.email;
+ let status = req.body.status;
+ let id = req.body._id;
 
   const attendance = await Attendance.findOne({
     date: date,
@@ -77,31 +77,31 @@ const postattendance = async function (req, res) {
   if (attendance) {
     const allAttendance = attendance.attendance;
 
-    if (typeof emails == "string") {
+    if (typeof(id) == "string") {
       let count = 0;
       for (const [key, value] of allAttendance) {
-        if (emails === key) {
+        if (id === key) {
           allAttendance.set(key, status);
           count = 1;
         }
       }
 
       if (count === 1) {
-        allAttendance.set(emails, status);
+        allAttendance.set(id, status);
       }
     } else {
       let f = 0;
       for (const [key, value] of allAttendance) {
-        for (let i = 0; i < emails.length; i++) {
-          if (emails[i] === key) {
+        for (let i = 0; i < id.length; i++) {
+          if (id[i] === key) {
             allAttendance.set(key, status[i]);
             f = 1;
           }
         }
       }
       if (f === 1) {
-        for (let i = 0; i < emails.length; i++) {
-          allAttendance.set(emails[i], status[i]);
+        for (let i = 0; i < id.length; i++) {
+          allAttendance.set(id[i], status[i]);
         }
       }
     }
@@ -112,16 +112,31 @@ const postattendance = async function (req, res) {
     const newAttendance = new Attendance({
       date: date,
       attendance: {},
+      details:[]
     });
 
     // console.log(typeof(emails));
 
+    if (typeof(id) == "string") {
+      newAttendance.attendance.set(id, status);
+      //  newAttendance.details.push({
+      //    _id: id,
+      //    email: emails,
+      //    roomno: roomno,
+      //    name: name,
+      //    contact: contact,
+      //  });
 
-    if (typeof emails == "string") {
-      newAttendance.attendance.set(emails, status);
     } else {
-      for (let i = 0; i < emails.length; i++) {
-        newAttendance.attendance.set(emails[i], status[i]);
+      for (let i = 0; i < id.length; i++) {
+        newAttendance.attendance.set(id[i], status[i]);
+        //  newAttendance.details.push({
+        //    _id: id[i],
+        //    email: emails[i],
+        //    roomno: roomno[i],
+        //    name: name[i],
+        //    contact: contact[i],
+        //  });
       }
     }
 

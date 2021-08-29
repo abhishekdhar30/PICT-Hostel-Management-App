@@ -30,7 +30,11 @@
             <tbody>
               <%if(users!="NULL"){%>
                 <%users.forEach(function(user){ %>
-
+                     <input name="_id" value="<%=user._id%>" hidden>
+                     <input name="email" value="<%=user.email%>" hidden>
+                     <input name="roomno" value="<%=user.room%>" hidden>
+                     <input name="name" value="<%=user.name%>" hidden>
+                     <input name="contact" value="<%=user.contact%>" hidden>
                   <tr>
                     <td>
                       <%=user.room%>
@@ -52,7 +56,7 @@
                         <% for (const [key, value] of dailyattendance) {%>
 
 
-                          <%if(user.email==key){%>
+                          <%if(user._id==key){%>
                             <%flag=1%>
                               <td>
                                 <%=value%>
@@ -76,11 +80,6 @@
                                                 <option value="Home">Home</option>
                                                 <option value="Holiday">Holiday</option>
 
-                                                <%if(user.email){%>
-                                                  <input name="email" value="<%=user.email%>" hidden>
-                                                  <%}else{%>
-                                                    <input name="email" value="" hidden>
-                                                    <%}%>
 
                                               </select>
 

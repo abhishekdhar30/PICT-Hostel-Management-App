@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema(
       default: Date.toString().substring(0, 15),
     },
     attendance:{type:Map,default:{}},
-    
+    // details:[]
   },
   {
     timestamps: true,

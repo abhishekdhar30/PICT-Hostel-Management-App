@@ -100,25 +100,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                             <%//users.forEach(function(user){ %>
+                             <%users.forEach(function(user){ %>
                 
             <tr>
-                <td><%//=user.room%></td>
-             <td><%//=user.name%></td>
+                <td><%=user.room%></td>
+             <td><%=user.name%></td>
 
-               <td><%//=user.email%></td>
+               <td><%=user.email%></td>
             
-             <td><%//=user.contact%></td>
+             <td><%=user.contact%></td>
 
-               <%// for (const [key, value] of dailyattendance) {%>
+               <% for (const [key, value] of dailyattendance) {%>
                 
               
-                  <%//if(user.email==key){%>
-                  <td><%//=value%></td>
-                  <%//}%>
+                  <%if(user._id==key){%>
+                  <td><%=value%></td>
+                  <%}%>
             
-                <%//}%>
-                <% //}); %>
+                <%}%>
+                <% }); %>
                         </tbody>
                     </table>
 

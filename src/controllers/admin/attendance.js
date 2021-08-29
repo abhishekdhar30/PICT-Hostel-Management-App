@@ -116,6 +116,7 @@ const postattendance = async function (req, res) {
 
     // console.log(typeof(emails));
 
+
     if (typeof emails == "string") {
       newAttendance.attendance.set(emails, status);
     } else {
@@ -153,7 +154,6 @@ const postattendance = async function (req, res) {
       }
     });
   });
-
   res.redirect("/attendance");
 };
 

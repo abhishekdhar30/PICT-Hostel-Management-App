@@ -11,11 +11,6 @@ const path = require("path");
 const connectDB = require("./src/config/db");
 const passport = require("passport");
 
-
-
-
-
-
 app.set("views", path.join(__dirname, "views"));
 
 app.set("view engine", "ejs");
@@ -33,11 +28,6 @@ app.use(
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-
 
 //this is for all routes and its code is in src/models/userModel.js
 app.use("/", userRoutes);

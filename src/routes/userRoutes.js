@@ -8,6 +8,7 @@ const {register, postregister} = require("../controllers/register");
 const {login, postlogin} = require("../controllers/login");
 const home = require("../controllers/home");
 const viewattendance = require("../controllers/students/viewattendance");
+const admin = require("../middleware/auth");
 
 
 //set up express router
@@ -25,11 +26,10 @@ router.get("/logout", function (req, res) {
 
 
 //Admin Pages
-router.route("/analysis").get(analysis).post(postanalysis);
-router.route("/addstudent").get(addstudent).post(postaddstudent);
-router.route("/attendance").get(attendance).post(postattendance);
-router.route("/payment").get(payment).post(postpayment);
-
+router.route("/analysis").get(admin, analysis).post(admin,postanalysis);
+router.route("/addstudent").get(admin, addstudent).post(admin,postaddstudent);
+router.route("/attendance").get(admin, attendance).post(admin,postattendance);
+router.route("/payment").get(admin, payment).post(admin,postpayment);
 
 
 //Students Pages

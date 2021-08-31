@@ -2,14 +2,28 @@ const User = require("../../models/addstudentModels");
 const Attendance = require("../../models/attendance");
 const Profile = require("../../models/users");
 
-const addstudent = function (req, res) {
+const addstudent = function (req, res,err) {
+
   if (!req.isAuthenticated()) {
     res.render("admin/addstudent", {
       userisloggedin: false,
       Admin: false,
+      // success: req.flash("success"),
+      // danger: "Sorry! You are not Authenticated ! Please Login first",
     });
     return;
   }
+
+  // if(err)
+  // {
+  //    res.render("admin/addstudent", {
+  //      userisloggedin: true,
+  //      Admin: false,
+  //      success: req.flash("success"),
+  //      danger: "You cannot access this section..Only admin can use this section",
+  //    });
+  //    return;
+  // }
 
   Profile.find({ isAdmin: true }, function (err, users) {
     if (err) console.log(err);
@@ -20,6 +34,8 @@ const addstudent = function (req, res) {
         res.render("admin/addstudent", {
           userisloggedin: true,
           Admin: false,
+          success: req.flash("success"),
+          danger: req.flash("error"),
         });
       }
     }

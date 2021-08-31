@@ -3,6 +3,8 @@ const Profile = require("../models/users");
 
 
 
+
+
 const register = function (req, res) {
 
 
@@ -26,23 +28,22 @@ const register = function (req, res) {
 
 const postregister = function (req, res) {
   Profile.register(
-    { username: req.body.username },
+    { username: req.body.username},
     req.body.password,
     function (err, user) {
       if (err) {
         console.log(err);
-        res.redirect("/register");
+        
       } else {
         passport.authenticate("local")(req, res, function () {
           console.log("Successfully created user");
-          res.redirect("/register");
+         
         });
       }
     }
   );
-
-  // //  console.log(req.body);
-  // res.redirect("/register");
+ 
+   res.redirect("/register");
 };
 
 module.exports = { register, postregister };

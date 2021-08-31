@@ -7,7 +7,7 @@
  */
 
 
-
+/* datatable */
 
    .dataTables_wrapper .dataTables_paginate .paginate_button {
                 padding: 4px 10px;
@@ -39,3 +39,8 @@
                 background-color: transparent !important;
                 background: transparent !important;
             }
+
+  /*              end's here           */
+
+
+

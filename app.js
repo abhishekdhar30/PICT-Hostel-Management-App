@@ -11,11 +11,13 @@ const path = require("path");
 const connectDB = require("./src/config/db");
 const passport = require("passport");
 
+
 app.set("views", path.join(__dirname, "views"));
 
 app.set("view engine", "ejs");
 app.use(express.static("public")); //used for integrating frontend with backend
  app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 //this is used so that I can flash the error and success message on the page

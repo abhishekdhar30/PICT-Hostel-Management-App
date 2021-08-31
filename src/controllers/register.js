@@ -43,7 +43,7 @@ const postregister = function (req, res) {
     }
   );
  
-   res.redirect("/register");
+   res.redirect("/dashboard");
 };
 
 module.exports = { register, postregister };

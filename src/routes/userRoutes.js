@@ -9,6 +9,8 @@ const {login, postlogin} = require("../controllers/login");
 const home = require("../controllers/home");
 const viewattendance = require("../controllers/students/viewattendance");
 const admin = require("../middleware/auth");
+const dashboard = require("../controllers/dashboard");
+
 
 
 //set up express router
@@ -23,6 +25,7 @@ router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/login");
 });
+router.route("/dashboard").get(dashboard)
 
 
 //Admin Pages

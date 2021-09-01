@@ -1,163 +1,175 @@
- <%-include("header")-%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/login.css" />
+  <title>Animated Login</title>
+</head>
+
+<body>
+   
+  <!-- Container -->
+  <div class="container" id="container">
+    <!-- Row -->
+    <div class="row">
+      <!-- Sign Up -->
+      <div class="col align-center flex-col sign-up">
+      
+        <div class="form-wrapper align-center">
+          
+          
+          <form class="form sign-up" action="/register" method="POST">
+            
+            <div class="input-group">
+              <i class="bx bxs-user"></i>
+             vhhb
+              <input type="text" placeholder="Username" name="username" />
+            </div>
+            <div class="input-group">
+              <i class="bx bx-mail-send"></i>
+              <input type="email" placeholder="Email" />
+            </div>
+            <div class="input-group">
+              <i class="bx bxs-lock-alt"></i>
+              <input type="password" placeholder="Password" name="password" />
+            </div>
+            <div class="input-group">
+              <i class="bx bxs-lock-alt"></i>
+              <input type="password" placeholder="Confirm password" />
+            </div>
+            <button>Sign up</button>
+            <p>
+              <span>Already have an account?</span>
+              <b id="sign-in">Sign in here</b>
+            </p>
+          </form>
+        </div>
+
+        <div class="form-wrapper">
+          <div class="social-list align-center sign-up">
+            <div class="align-center facebook-bg">
+              <i class="bx bxl-facebook"></i>
+            </div>
+            <div class="align-center google-bg">
+              <i class="bx bxl-google"></i>
+            </div>
+            <div class="align-center twitter-bg">
+              <i class="bx bxl-twitter"></i>
+            </div>
+            <div class="align-center insta-bg">
+              <i class="bx bxl-instagram-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Sign Up -->
+      <!-- Sign In -->
+      <div class="col align-center flex-col sign-in">
+       
+        <div class="form-wrapper align-center">
+         
+          <form class="form sign-in" action="/login" method="POST">
+            <div class="input-group">
+              <i class="bx bxs-user"></i>
+              <input type="text" placeholder="Username" name="username" />
+            </div>
+            <div class="input-group">
+              <i class="bx bxs-lock-alt"></i>
+              <input type="password" placeholder="Password" name="password" />
+            </div>
+            <button>Sign in</button>
+            <p>
+              <b>Forgot password?</b>
+            </p>
+            <p>
+              <span> Don't have an account? </span>
+              <b id="sign-up">Sign up here</b>
+            </p>
+           
+          </form>
+       
+        </div>
+
+        <div class="form-wrapper">
+          <div class="social-list align-center sign-in">
+            <div class="align-center facebook-bg">
+              <i class="bx bxl-facebook"></i>
+            </div>
+            <div class="align-center google-bg">
+              <i class="bx bxl-google"></i>
+            </div>
+            <div class="align-center twitter-bg">
+              <i class="bx bxl-twitter"></i>
+            </div>
+            <div class="align-center insta-bg">
+              <i class="bx bxl-instagram-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Sign In -->
+    </div>
+    <!-- End Row -->
+    <!-- Content Section -->
+    <div class="row content-row">
+      <!-- Sign In Content -->
+      <div class="col align-items flex-col">
+        <div class="text sign-in">
+          <h2>Welcome Back!</h2>
+         
+          <p>
+            To enjoy our services you must log in...If you haven't register please register first !
+          </p>
+        </div>
+        <div class="img sign-in">
+          <img src="images/bg1.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- Sign Up Content -->
+      <div class="col align-items flex-col">
+        <div class="img sign-up">
+          <img src="images/register.png" alt="" />
+        </div>
+        <div class="text sign-up">
+          <h2>Join with us</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae et
+            cumque consectetur illo accusamus impedit eos ut. Eos, odit
+            facilis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Container -->
+
+  <!-- Script -->
+  <script>
+
+const container = document.getElementById("container");
+const signIn = document.getElementById("sign-in");
+const signUp = document.getElementById("sign-up");
+
+setTimeout(() => {
+container.classList.add("sign-in");
+}, 200);
+
+const toggle = () => {
+container.classList.toggle("sign-in");
+container.classList.toggle("sign-up");
+};
+
+signIn.addEventListener("click", toggle);
+signUp.addEventListener("click", toggle);
 
 
- <!-- <img src="images/Login.gif" class=""> -->
 
 
+  </script>
+</body>
 
- <div class="container my-5">
-   <div class="row justify-content-center text-center mb-4">
-     <h2>Welcome To PICT Hostel Website !</h2>
-   </div>
-   <div class="row justify-content-center">
-     <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12 col-xs-12">
-
-
-       <!-- Pills navs -->
-       <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-         <li class="nav-item" role="presentation">
-           <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
-         </li>
-         <li class="nav-item" role="presentation">
-           <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
-         </li>
-       </ul>
-       <!-- Pills navs -->
-
-       <!-- Pills content -->
-       <div class="tab-content">
-         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-           <form method="POST" action="/login">
-             <div class="text-center mb-3">
-               <p>Sign in with:</p>
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-facebook-f"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-google"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-twitter"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-github"></i>
-               </button>
-             </div>
-
-             <p class="text-center">or:</p>
-
-             <!-- Email input -->
-             <div class="form-outline mb-4">
-               <input type="text" id="loginName" class="form-control" name="username" />
-               <label class="form-label" for="loginName">Email or username</label>
-             </div>
-
-             <!-- Password input -->
-             <div class="form-outline mb-4">
-               <input type="password" id="loginPassword" class="form-control" name="password" />
-               <label class="form-label" for="loginPassword">Password</label>
-             </div>
-
-             <!-- 2 column grid layout -->
-             <div class="row mb-4">
-               <div class="col-md-6 d-flex justify-content-center">
-                 <!-- Checkbox -->
-                 <div class="form-check mb-3 mb-md-0">
-                   <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-                   <label class="form-check-label" for="loginCheck"> Remember me </label>
-                 </div>
-               </div>
-
-               <div class="col-md-6 d-flex justify-content-center">
-                 <!-- Simple link -->
-                 <a href="#!">Forgot password?</a>
-               </div>
-             </div>
-
-             <!-- Submit button -->
-             <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-             <button type="reset" class="btn btn-danger btn-block mb-4">Reset</button>
-
-             <!-- Register buttons -->
-             <div class="text-center">
-               <p>Not a member? <a href="#!">Register</a></p>
-             </div>
-           </form>
-         </div>
-         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-           <form method="POST" action="/register">
-             <div class="text-center mb-3">
-               <p>Sign up with:</p>
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-facebook-f"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-google"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-twitter"></i>
-               </button>
-
-               <button type="button" class="btn btn-primary btn-floating mx-1">
-                 <i class="fab fa-github"></i>
-               </button>
-             </div>
-
-             <p class="text-center">or:</p>
-
-             <!-- Name input -->
-             <div class="form-outline mb-4">
-               <input type="text" id="registerName" class="form-control" />
-               <label class="form-label" for="registerName">Name</label>
-             </div>
-
-             <!-- Username input -->
-             <div class="form-outline mb-4">
-               <input type="text" id="registerUsername" class="form-control" name="username" />
-               <label class="form-label" for="registerUsername">Username</label>
-             </div>
-
-             <!-- Email input -->
-             <div class="form-outline mb-4">
-               <input type="email" id="registerEmail" class="form-control" />
-               <label class="form-label" for="registerEmail">Email</label>
-             </div>
-
-             <!-- Password input -->
-             <div class="form-outline mb-4">
-               <input type="password" id="registerPassword" class="form-control" name="password" />
-               <label class="form-label" for="registerPassword">Password</label>
-             </div>
-
-             <!-- Repeat Password input -->
-             <div class="form-outline mb-4">
-               <input type="password" id="registerRepeatPassword" class="form-control" />
-               <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-             </div>
-
-             <!-- Checkbox -->
-             <div class="form-check d-flex justify-content-center mb-4">
-               <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
-               <label class="form-check-label" for="registerCheck">
-                 I have read and agree to the terms
-               </label>
-             </div>
-
-             <!-- Submit button -->
-             <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
-             <button type="reset" class="btn btn-danger btn-block mb-4">Reset</button>
-           </form>
-         </div>
-       </div>
-       <!-- Pills content -->
-     </div>
-   </div>
- </div>
-
- <!-- JS -->
- <script type="text/javascript" src="js/mdb.min.js"></script>
+</html>

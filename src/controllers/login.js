@@ -32,7 +32,7 @@ const login = function (req, res) {
 
 const postlogin = function (req, res) {
 
-// console.log(req.body);
+ console.log(req.body);
 
    const user = new Profile({
      username: req.body.username,

@@ -54,7 +54,7 @@
       </div>
       <div class="col">
         <div class="progress progress-sm mr-2">
-          <div class="progress-bar bg-primary" role="progressbar" style="width:  <%=total%>%" aria-valuenow=" <%=total%>" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-primary" role="progressbar" style="width:100%" aria-valuenow="<%=total%>" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
                      </div>
                      <div class="col">
                        <div class="progress progress-sm mr-2">
-                         <div class="progress-bar bg-success" role="progressbar" style="width:  <%=present%>%" aria-valuenow=" <%=present%>" aria-valuemin="0" aria-valuemax="100"></div>
+                         <div class="progress-bar bg-success" role="progressbar" style="width:<%=(present/total)*100%>%" aria-valuenow=" <%=present%>" aria-valuemin="0" aria-valuemax="100"></div>
                        </div>
                      </div>
                    </div>
@@ -154,7 +154,7 @@
 
                   <div class="col">
                     <div class="progress progress-sm mr-2">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: <%=home%>%" aria-valuenow="<%=home%>"
+                      <div class="progress-bar bg-info" role="progressbar" style="width: <%=(home/total)*100%>" aria-valuenow="<%=home%>"
                         aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
@@ -184,7 +184,7 @@
 
    <div class="col">
      <div class="progress progress-sm mr-2">
-       <div class="progress-bar bg-warning" role="progressbar" style="width: <%=absent%>%" aria-valuenow="<%=absent%>" aria-valuemin="0" aria-valuemax="100"></div>
+       <div class="progress-bar bg-warning" role="progressbar" style="width: <%=(absent/total)*100%>%" aria-valuenow="<%=absent%>" aria-valuemin="0" aria-valuemax="100"></div>
      </div>
    </div>
  </div>
@@ -222,60 +222,40 @@
               <div id="container" style="width: 100%; height: 100%"></div>
 
 
+              
+                <div id="presentstudents" hidden><%=present%></div>
+                  <div id="absentstudents" hidden><%=absent%></div>
+                    <div id="homestudents" hidden><%=home%></div>
+
+
+
 <script>
+
+       
+         let presentstudents=document.getElementById("presentstudents").innerHTML;
+          let absentstudents=document.getElementById("absentstudents").innerHTML;
+           let homestudents=document.getElementById("homestudents").innerHTML;
                var data = [
                   {
-                    x: "Total Students", value:40, normal: {
-                      fill: "#4e73df"
-
-                    }
-                  },
-                  {
-                    x: "In Hostel", value: 20, normal: {
+                    x: "In Hostel", value: presentstudents, normal: {
                       fill: "#1cc88a"
                     }
                   },
 
                   {
-                    x: "At Home", value: 30, normal: {
+                    x: "At Home", value: homestudents, normal: {
                       fill: "#36b9cc"
                     }
                   },
                   {
-                    x: "Absent", value: 40, normal: {
+                    x: "Absent", value: absentstudents, normal: {
                       fill: "#f6c23e"
                     }
                   },
 
                 ];
           
-                // set the data
-                // var data = [
-                //   {
-                //     x: "Total Students", value:40, normal: {
-                //       fill: "#4e73df"
-
-                //     }
-                //   },
-                //   {
-                //     x: "In Hostel", value: 20, normal: {
-                //       fill: "#1cc88a"
-                //     }
-                //   },
-
-                //   {
-                //     x: "At Home", value: 30, normal: {
-                //       fill: "#36b9cc"
-                //     }
-                //   },
-                //   {
-                //     x: "Absent", value: 40, normal: {
-                //       fill: "#f6c23e"
-                //     }
-                //   },
-
-                // ];
-
+              
                 // create the chart
                  var chart = anychart.pie();
  

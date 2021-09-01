@@ -13,7 +13,9 @@ const dashboard = function (req, res) {
     //     }
     // })
 
+    
 
+  
 
 
  User.find({}, function (err, user) {
@@ -29,21 +31,25 @@ const dashboard = function (req, res) {
            res.render("dashboard", {
              dailyattendance: person.attendance,
              users: user,
+           
            });
          } else if (person) {
            res.render("dashboard", {
              dailyattendance: person.attendance,
              users: "NULL",
+             chart: chart,
            });
          } else if (user) {
            res.render("dashboard", {
              users: user,
              dailyattendance: "NULL",
+             chart: chart,
            });
          } else {
            res.render("dashboard", {
              users: "NULL",
              dailyattendance: "NULL",
+             chart: chart,
            });
          }
        }

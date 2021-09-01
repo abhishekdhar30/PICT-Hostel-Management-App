@@ -5,7 +5,11 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
   <link rel="stylesheet" href="css/style.css">
 
+  <%  const date = Date().toString().substring(0, 15);%>
+
   <h1 class="text-center">Attendance !</h1>
+
+  <h5 class="text-center"><%=date%></h5>
 
 
 
@@ -19,7 +23,7 @@
             </div> -->
             <div class="row justify-content-center">
               <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
-                <table class="table table-bordered table-hover align-middle text-center display" id="table_id">
+                <table class="table table-bordered table-hover align-middle text-center display" id="table_id" style="border:none">
                   <thead>
                     <tr>
 
@@ -28,7 +32,7 @@
                       <th scope="col">Email</th>
                       <th scope="col">Contact</th>
                       <th scope="col">Status</th>
-                      <th scope="col">Attendance</th>
+                      <th scope="col">Mark Attendance</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -78,15 +82,13 @@
                       <%}%>
                                             <td>
 
-                                              <select name="status" id="status">
+                                              <select name="status"  id="status">
                                                 <option value="Hostel">Hostel</option>
                                                 <option value="Outside">Outside</option>
                                                 <option value="Home">Home</option>
                                                 <option value="Holiday">Holiday</option>
-
-
                                               </select>
-
+                                            
                                             </td>
 
 
@@ -100,34 +102,33 @@
       </div>
     </div>
 
+  <div class="text-center">
 
-    <button class="btn">Submit</button>
-
-
-
-
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
+    <button type="button" class="btnnn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Submit</button>
+  </div>
+  
 
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
+
+<div class="modal fade" tabindex="-1" role="dialog" id="staticBackdrop">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">Attendance Submission</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-        ...
+        <p>Are you sure that you have filled the data correctly ?</p>
       </div>
       <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 
 
@@ -164,9 +165,10 @@
           { "width": "5%" },
 
         ],
-        "lengthChange": false,
-        "paging": false,
-        "info": false
+        "lengthChange": true,
+        "paging": true,
+        "info": false,
+         responsive: true
       });
     });
   </script>

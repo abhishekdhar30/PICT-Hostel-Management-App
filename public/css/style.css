@@ -9,7 +9,7 @@
 
 /* datatable */
 
-   .dataTables_wrapper .dataTables_paginate .paginate_button {
+   /* .dataTables_wrapper .dataTables_paginate .paginate_button {
                 padding: 4px 10px;
             }
             .dataTables_wrapper .dataTables_paginate {
@@ -38,9 +38,50 @@
             .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
                 background-color: transparent !important;
                 background: transparent !important;
-            }
+            } */
 
   /*              end's here           */
+
+.btnnn{
+    width:200px;
+    height:40px;
+    background-color: #4e73df;
+    color:white;
+    border-radius: 5px;
+    border:none;
+
+}
+
+
+
+.btnnn:hover{
+    color:#4e73df;
+    background-color:white;
+    border:0.5px solid  #4e73df;
+    transition: all .35s;
+   
+}
+
+
+select {
+/* 
+  appearance: none;
+  background-color: transparent;
+  border: none; */
+   border:0.3px solid white;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  /* font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit; */
+}
+
+
+
+
+
 
 
 

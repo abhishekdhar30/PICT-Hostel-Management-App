@@ -65,7 +65,7 @@
                 </div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                <i class="fas fa-user-friends fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -131,7 +131,8 @@
                 </div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+              
               </div>
             </div>
           </div>
@@ -160,7 +161,7 @@
                 </div>
               </div>
               <div class="col-auto">
-                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                <i class="fas fa-home fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -193,7 +194,7 @@
                
               </div>
               <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
+                <i class="fas fa-times-circle fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -219,11 +220,12 @@
 
 
               <div id="container" style="width: 100%; height: 100%"></div>
-              <script>
-                // set the data
-                var data = [
+
+
+<script>
+               var data = [
                   {
-                    x: "Total Students", value: 20, normal: {
+                    x: "Total Students", value:40, normal: {
                       fill: "#4e73df"
 
                     }
@@ -246,11 +248,37 @@
                   },
 
                 ];
+          
+                // set the data
+                // var data = [
+                //   {
+                //     x: "Total Students", value:40, normal: {
+                //       fill: "#4e73df"
+
+                //     }
+                //   },
+                //   {
+                //     x: "In Hostel", value: 20, normal: {
+                //       fill: "#1cc88a"
+                //     }
+                //   },
+
+                //   {
+                //     x: "At Home", value: 30, normal: {
+                //       fill: "#36b9cc"
+                //     }
+                //   },
+                //   {
+                //     x: "Absent", value: 40, normal: {
+                //       fill: "#f6c23e"
+                //     }
+                //   },
+
+                // ];
 
                 // create the chart
-                var chart = anychart.pie();
-
-
+                 var chart = anychart.pie();
+ 
                 // set the chart title
                 chart.title("Records");
 
@@ -261,10 +289,10 @@
                 chart.container('container');
                 chart.draw();
 
+          </script>
 
-        
-              </script>
-                
+
+     
 
 
 

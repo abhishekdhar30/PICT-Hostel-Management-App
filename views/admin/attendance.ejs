@@ -1,77 +1,81 @@
-<%-include("../dashboard")-%>
+<%-include("../navigation")-%>
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
   <link rel="stylesheet" href="css/style.css">
 
-  <h1 class="text-center">Take Attendance</h1>
+  <h1 class="text-center">Attendance !</h1>
 
 
-  <form method="POST" action="/attendance">
-    <div class="container my-5">
-      <!-- <div class="row justify-content-center text-center mb-4">
+
+
+
+
+        <form method="POST" action="/attendance">
+          <div class="container my-5">
+            <!-- <div class="row justify-content-center text-center mb-4">
                 <h2>Available files are listed below</h2>
             </div> -->
-      <div class="row justify-content-center">
-        <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
-          <table class="table table-bordered table-hover align-middle text-center display" id="table_id">
-            <thead>
-              <tr>
+            <div class="row justify-content-center">
+              <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
+                <table class="table table-bordered table-hover align-middle text-center display" id="table_id">
+                  <thead>
+                    <tr>
 
-                <th scope="col">Room No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Status</th>
-                <th scope="col">Attendance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%if(users!="NULL"){%>
-                <%users.forEach(function(user){ %>
-                     <input name="_id" value="<%=user._id%>" hidden>
-                     <input name="email" value="<%=user.email%>" hidden>
-                     <input name="roomno" value="<%=user.room%>" hidden>
-                     <input name="name" value="<%=user.name%>" hidden>
-                     <input name="contact" value="<%=user.contact%>" hidden>
-                  <tr>
-                    <td>
-                      <%=user.room%>
-                    </td>
-                    <td>
-                      <%=user.name%>
-                    </td>
+                      <th scope="col">Room No</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Contact</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Attendance</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%if(users!="NULL"){%>
+                    <%users.forEach(function(user){ %>
+                    <input name="_id" value="<%=user._id%>" hidden>
+                    <input name="email" value="<%=user.email%>" hidden>
+                    <input name="roomno" value="<%=user.room%>" hidden>
+                    <input name="name" value="<%=user.name%>" hidden>
+                    <input name="contact" value="<%=user.contact%>" hidden>
+                    <tr>
+                      <td>
+                        <%=user.room%>
+                      </td>
+                      <td>
+                        <%=user.name%>
+                      </td>
 
-                    <td>
-                      <%=user.email%>
-                    </td>
+                      <td>
+                        <%=user.email%>
+                      </td>
 
-                    <td>
-                      <%=user.contact%>
-                    </td>
+                      <td>
+                        <%=user.contact%>
+                      </td>
 
-                    <%if(dailyattendance!="NULL"){%>
+                      <%if(dailyattendance!="NULL"){%>
                       <%let flag=0%>
-                        <% for (const [key, value] of dailyattendance) {%>
+                      <% for (const [key, value] of dailyattendance) {%>
 
 
-                          <%if(user._id==key){%>
-                            <%flag=1%>
-                              <td>
-                                <%=value%>
-                              </td>
-                              <%}%>
+                      <%if(user._id==key){%>
+                      <%flag=1%>
+                      <td>
+                        <%=value%>
+                      </td>
+                      <%}%>
 
                                 <%}%>
-                                  <%if(flag==0){%>
-                                    <td>Not Yet Marked</td>
-                                    <%}%>
+                      <%if(flag==0){%>
+                      <td>Not Yet Marked</td>
+                      <%}%>
 
                                       <%}else{%>
-                                        <td>Not Yet Marked</td>
-                                        <%flag=0%>
-                                          <%}%>
+                      <td>Not Yet Marked</td>
+                      <%flag=0%>
+                      <%}%>
                                             <td>
 
                                               <select name="status" id="status">
@@ -89,7 +93,7 @@
                   </tr>
 
                   <% }); %>
-                    <%}%>
+                      <%}%>
             </tbody>
           </table>
         </div>
@@ -97,7 +101,9 @@
     </div>
 
 
-    <button>Submit</button>
+    <button class="btn">Submit</button>
+
+
 
 
     <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">

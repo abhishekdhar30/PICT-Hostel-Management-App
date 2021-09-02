@@ -1,6 +1,6 @@
 const User = require("../models/addstudentModels");
 const Attendance = require("../models/attendance");
-
+const Profile=require("../models/users")
 
 
 
@@ -22,32 +22,41 @@ const dashboard = function (req, res) {
        if (err) {
          console.log(err);
        } else {
-         if (person && user) {
-           res.render("dashboard", {
-             dailyattendance: person.attendance,
-             users: user,
+
+        Profile.findOne({ _id: req.user._id }, function (err, profiles) {
+
+          if(profiles)
+          {
+             
+                  if (person && user) {
+                     res.render("dashboard", {
+                      dailyattendance: person.attendance,
+                      users: user,
+                      Admin:profiles.isAdmin
+                     });
+                  } else {
+                     res.render("dashboard", {
+                       users: "NULL",
+                       dailyattendance: "NULL",
+                       Admin: profiles.isAdmin,
+                     });
+                  }
            
-           });
-         } else if (person) {
-           res.render("dashboard", {
-             dailyattendance: person.attendance,
-             users: "NULL",
-            
-           });
-         } else if (user) {
-           res.render("dashboard", {
-             users: user,
-             dailyattendance: "NULL",
-            
-           });
-         } else {
-           res.render("dashboard", {
-             users: "NULL",
-             dailyattendance: "NULL",
-            
-           });
-         }
-       }
+          }
+
+          else
+          {
+            //users he nhi hai toh redirect login pe he krana h
+             res.redirect("/login");
+          }
+
+
+        });
+
+
+        }
+
+
      });
    }
  });

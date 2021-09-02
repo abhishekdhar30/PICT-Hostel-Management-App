@@ -28,7 +28,7 @@
 
     <%let total=0%>
 
-     <%if(users){%>
+     <%if(users!="NULL"){%>
 
      <%total=users.length%>
      <%}%> 
@@ -381,7 +381,7 @@
                 </tr>
               </thead>
               <tbody>
-
+                 <%if(users!="NULL"){%>
                 <%users.forEach(function(user){%>
                   <tr>
                     <td>
@@ -399,6 +399,7 @@
                    
                   </tr>
                   <% })%>
+                  <%}%>
 
               </tbody>
             </table>

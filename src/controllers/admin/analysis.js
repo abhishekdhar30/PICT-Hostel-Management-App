@@ -43,42 +43,38 @@ const analysis = function (req, res) {
            dailyattendance: person.attendance,
            users: user,
            date: data.date,
-           userisloggedin: true,
-           Admin: true,
+           Admin: "true",
          });
         }
        
        else if(person)
        {
-         console.log("kk");
+        
           res.render("admin/analysis", {
             dailyattendance: person.attendance,
             date: data.date,
             users: "NULL",
-            userisloggedin: true,
-            Admin: true,
+            Admin: "true",
           });
        }
        else if(user.length!=0)
        {
-          console.log("top");
+         
          res.render("admin/analysis", {
            users: user,
            date: data.date,
            dailyattendance: "NULL",
-           userisloggedin: true,
-           Admin: true,
+           Admin: "true",
          });
        }
        else
        {
-          console.log("abhi");
+         
           res.render("admin/analysis", {
             users: "NULL",
             date: data.date,
             dailyattendance: "NULL",
-            userisloggedin: true,
-            Admin: true,
+            Admin: "true",
           });
        }
       }

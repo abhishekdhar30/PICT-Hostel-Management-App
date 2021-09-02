@@ -11,10 +11,13 @@ const addadmin = function (req, res) {
    Profile.find({},function(err,profiles){
          if(err) console.log(err);
          if(profiles){
-              res.render("admin/addadmin",{profiles:profiles});
+              res.render("admin/addadmin", {
+                profiles: profiles,
+                Admin: "true",
+              });
          }
          else
-            res.render("admin/addadmin", { profiles: "NULL" });
+            res.render("admin/addadmin", { profiles: "NULL", Admin: "true" });
    })
 
 }

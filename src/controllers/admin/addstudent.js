@@ -9,36 +9,17 @@ const addstudent = function (req, res,err) {
      return;
    }
 
-  // if(err)
-  // {
-  //    res.render("admin/addstudent", {
-  //      userisloggedin: true,
-  //      Admin: false,
-  //      success: req.flash("success"),
-  //      danger: "You cannot access this section..Only admin can use this section",
-  //    });
-  //    return;
-  // }
 
-  Profile.find({ isAdmin: true }, function (err, users) {
+  Profile.find({ isAdmin: "true" }, function (err, users) {
     if (err) console.log(err);
     else {
       if (users) {
-        res.render("admin/addstudent", { userisloggedin: true, Admin: true });
-      } else {
-        res.render("admin/addstudent", {
-          userisloggedin: true,
-          Admin: false,
-          success: req.flash("success"),
-          danger: req.flash("error"),
-        });
+        res.render("admin/addstudent", { Admin: "true" });
       }
     }
   });
 
-  //  if (req.isAuthenticated()) {
-  //    res.render("admin/addstudent", { userisloggedin: true });
-  //  } else res.render("admin/addstudent", { userisloggedin: false });
+  
 };
 
 const postaddstudent = async function (req, res) {

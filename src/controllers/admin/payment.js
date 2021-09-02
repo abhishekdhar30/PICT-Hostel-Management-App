@@ -7,8 +7,7 @@ const payment = function (req, res) {
   }
 
    res.render("admin/payment", {
-     userisloggedin: true,
-     Admin: true,
+     Admin: "true",
    });
 
 

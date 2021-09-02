@@ -10,6 +10,8 @@ const home = require("../controllers/home");
 const viewattendance = require("../controllers/students/viewattendance");
 const admin = require("../middleware/auth");
 const dashboard = require("../controllers/dashboard");
+const {addadmin, postaddadmin} = require("../controllers/admin/addadmin");
+const { edit, postedit } = require("../controllers/admin/edit");
 
 
 
@@ -21,11 +23,12 @@ const router=express.Router();
 router.route("/register").get(register).post(postregister);
 router.route("/").get(home);
 router.route("/login").get(login).post(postlogin);
+router.route("/dashboard").get(dashboard);
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/login");
 });
-router.route("/dashboard").get(dashboard)
+
 
 
 //Admin Pages
@@ -33,7 +36,8 @@ router.route("/analysis").get(admin, analysis).post(admin,postanalysis);
 router.route("/addstudent").get(admin, addstudent).post(admin,postaddstudent);
 router.route("/attendance").get(admin, attendance).post(admin,postattendance);
 router.route("/payment").get(admin, payment).post(admin,postpayment);
-
+router.route("/addadmin").get(admin, addadmin).post(admin,postaddadmin);
+ router.route("/edit").get(admin, edit).post(admin,postedit);
 
 //Students Pages
 router.route("/viewattendance").get(viewattendance);

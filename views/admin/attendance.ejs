@@ -38,7 +38,7 @@
                   <tbody>
                     <%if(users!="NULL"){%>
                     <%users.forEach(function(user){ %>
-                    <input name="_id" value="<%=user._id%>" hidden>
+                   
                     <input name="email" value="<%=user.email%>" hidden>
                     <input name="roomno" value="<%=user.room%>" hidden>
                     <input name="name" value="<%=user.name%>" hidden>
@@ -65,6 +65,7 @@
 
 
                       <%if(user._id==key){%>
+                      
                       <%flag=1%>
                       <td>
                         <%=value%>
@@ -87,6 +88,7 @@
                                                 <option value="Outside">Outside</option>
                                                 <option value="Home">Home</option>
                                                 <option value="Holiday">Holiday</option>
+                                                 <input name="_id" value="<%=user._id%>" hidden>
                                               </select>
                                             
                                             </td>
@@ -176,4 +178,4 @@
 
 
 
-  </form>
+ 

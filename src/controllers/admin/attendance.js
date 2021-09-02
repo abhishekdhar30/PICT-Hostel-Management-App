@@ -62,7 +62,7 @@ const attendance = function (req, res) {
 
 const postattendance = async function (req, res) {
   const date = Date().toString().substring(0, 15);
-  // console.log(req.body);
+   console.log(req.body);
 
  const { roomno, name, contact } = req.body;
 

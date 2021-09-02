@@ -101,6 +101,9 @@ const analysis = function (req, res) {
 
 const postanalysis = async function (req, res) {
   // console.log(req.body);
+
+ if(req.body.btn==1)
+ { 
   let datee=req.body.searcheddate
 let converteddate = moment(datee).toString().substring(0, 15);
 
@@ -108,17 +111,29 @@ storage.setItem("userInfo", {
   date: converteddate,
 });
 
+ }
 
-// if(req.body.btn==2)
-// {
-//   const days = req.body.noofdays;
-//   console.log(days);
-//   var date = new Date();
-//   var deletionDate = new Date(date.setDate(date.getDate() - days));
-//   await Attendance.deleteMany({
-//     createdAt: { $lt: deletionDate },
-//   });
-// }
+
+else if(req.body.btn==2)
+{
+
+  let noOfdays = (req.body.noofdays);
+  let converteddays = noOfdays.toLowerCase();
+
+  if(converteddays=="delete")
+  {
+     await Attendance.deleteMany({});
+  }
+  else{
+  const days = req.body.noofdays;
+  console.log(days);
+  var date = new Date();
+  var deletionDate = new Date(date.setDate(date.getDate() - days));
+  await Attendance.deleteMany({
+    createdAt: { $lt: deletionDate },
+  });
+  }
+}
 
 
   res.redirect("/analysis");

@@ -1,6 +1,13 @@
 <%-include("../navigation")-%>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
+
+
+
 <link rel="stylesheet" href="css/style.css">
 
 
@@ -12,7 +19,7 @@
   <div class="text-center">
     <h3>Analysis !</h3>
     <p><%=date%></p>
-    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#changedate">Change date</button>
+
   </div>
 
   <!-- <div class="text-right">
@@ -26,31 +33,31 @@
 
 
 
-   <div class="container">
-     <div class="row justify-content-center">
-       <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive mt-5 mb-4">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive mt-5 mb-5">
 
-    <!-- Button trigger modal -->
+        <!-- Button trigger modal -->
 
-    <div class="flexx">
-    <button type="button" class="dangerr" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Delete Attendance
-    </button>
-
-       <button name="btn" class="btnnn" value="4">Download</button>
+        <div class="flexx">
+          <button type="button" class="dangerr" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Delete Attendance
+          </button>
+          <button type="button" class="btnnn" data-bs-toggle="modal" data-bs-target="#changedate">Change date</button>
+        </div>
+      </div>
     </div>
-
-  </div></div></div>
-
+  </div>
 
 
 
 
-  <br/>
+
+  <br />
   <!--  -->
   <div class="container">
-   <div class="row justify-content-center">
-     <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
 
 
         <table class="table table-bordered table-hover align-middle text-center display" id="table_id" style="border:none;">
@@ -74,116 +81,164 @@
 
               <td><%=user.contact%></td>
 
+              <%if(dailyattendance!="NULL"){%>
+              <%let flag=0%>
               <% for (const [key, value] of dailyattendance) {%>
 
 
               <%if(user._id==key){%>
-              <td><%=value%></td>
+
+              <%flag=1%>
+              <td>
+                <%=value%>
+              </td>
               <%}%>
-            
-                <%}%>
-              <% }); %>
+
+                   <%}%>
+              <%if(flag==0){%>
+              <td>Not Yet Marked</td>
+              <%}%>
+
+                <%}else{%>
+              <td>Not Yet Marked</td>
+              <%flag=0%>
+              <%}%>
+
+               <%})%>
           </tbody>
         </table>
-        
-        
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Enter no of days before to deleted</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
-         </button>
-      </div>
-      <div class="modal-body">
-        Enter no of days<br />
-        <input class="w-100" name="noofdays" value="0">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="btn" value="2">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br /><br /><br />
-<div>
-
-</div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="changedate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changedate" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Enter date </h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
-         </button>
-      </div>
-      <div class="modal-body">
-        Enter the date which you want to analyse !<br /><br/>
-        <input class="w-100 " type="date" name="searcheddate">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="btn" value="1">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Enter no of days before to deleted</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                If You want to remove All time Attendance !<br /> Please write <strong style="color:black">delete</strong> in the input else
+                write the <strong style="color:black">number of days</strong> before you want to delete ! <br /><br />
+                <input class="w-100" name="noofdays" onChange="func(this.value)" value="0">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="btn" value="2">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br /><br /><br />
+        <div>
+
+        </div>
 
 
-<form>
+        <!-- Modal -->
+        <div class="modal fade" id="changedate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changedate" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Enter date </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Enter the date which you want to analyse !<br />
+                <input class="w-100 " type="date" name="searcheddate">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="btn" value="1">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <form>
+
+          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 
 
 
-<script>
-  $(document).ready(function() {
-    $('#table_id').DataTable({
-      autoWidth: false,
-      columnDefs: [{
-        targets: ['_all'],
-        className: 'mdc-data-table__cell'
-      }],
-      "columns": [{
-          "width": "5%"
-        },
-        {
-          "width": "5%"
-        },
-        {
-          "width": "5%"
-        },
-        {
-          "width": "5%"
-        },
-        {
-          "width": "5%"
-        },
 
 
-      ],
-      "lengthChange": false,
-      "paging": false,
-      "info": false
-    });
-  });
-</script>
+<!-- buttons -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+        
 
-</body>
 
-</html>
+
+
+          <script>
+            $(document).ready(function() {
+              $('#table_id').DataTable({
+                 dom: 'Bfrtip',
+                 buttons: [
+                 'copy', 'csv', 'excel', 'pdf', 'print',
+                 ],
+                   
+                autoWidth: false,
+                columnDefs: [{
+                  targets: ['_all'],
+                  className: 'mdc-data-table__cell'
+                }],
+                "columns": [{
+                    "width": "5%"
+                  },
+                  {
+                    "width": "5%"
+                  },
+                  {
+                    "width": "5%"
+                  },
+                  {
+                    "width": "5%"
+                  },
+                  {
+                    "width": "5%"
+                  },
+
+
+                ],
+                "lengthChange": false,
+                "paging": false,
+                "info": false,
+
+
+
+              });
+            });
+
+
+            function func(val) {
+              console.log(val);
+            }
+          </script>
+
+          </body>
+
+          </html>

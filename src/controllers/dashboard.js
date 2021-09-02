@@ -6,16 +6,11 @@ const Attendance = require("../models/attendance");
 
 const dashboard = function (req, res) {
 
-    // User.find({},function(err,users){
-    //     if(users)
-    //     {
-    //         res.render("dashboard", { users:users });
-    //     }
-    // })
-
-    
-
   
+   if (!req.isAuthenticated()) {
+     res.redirect("/login");
+     return;
+   }
 
 
  User.find({}, function (err, user) {

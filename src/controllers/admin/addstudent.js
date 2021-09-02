@@ -4,15 +4,10 @@ const Profile = require("../../models/users");
 
 const addstudent = function (req, res,err) {
 
-  if (!req.isAuthenticated()) {
-    res.render("admin/addstudent", {
-      userisloggedin: false,
-      Admin: false,
-      // success: req.flash("success"),
-      // danger: "Sorry! You are not Authenticated ! Please Login first",
-    });
-    return;
-  }
+   if (!req.isAuthenticated()) {
+     res.redirect("/login");
+     return;
+   }
 
   // if(err)
   // {
@@ -69,6 +64,7 @@ const postaddstudent = async function (req, res) {
     contact: contact,
     fatherscontact: fcontact,
     fathersemail: femail,
+    address:address
   });
 
   user.save();

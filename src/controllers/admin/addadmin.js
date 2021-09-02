@@ -3,15 +3,10 @@ const Profile = require("../../models/users")
 
 const addadmin = function (req, res) {
 
-if (!req.isAuthenticated()) {
-  res.render("admin/addadmin", {
-    userisloggedin: false,
-    Admin: false,
-    // success: req.flash("success"),
-    // danger: "Sorry! You are not Authenticated ! Please Login first",
-  });
-  return;
-}
+ if (!req.isAuthenticated()) {
+   res.redirect("/login");
+   return;
+ }
 
    Profile.find({},function(err,profiles){
          if(err) console.log(err);

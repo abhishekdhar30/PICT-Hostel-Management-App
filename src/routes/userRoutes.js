@@ -4,7 +4,7 @@ const {addstudent, postaddstudent} = require("../controllers/admin/addstudent");
 const {analysis, postanalysis} = require("../controllers/admin/analysis");
 const {attendance, postattendance} = require("../controllers/admin/attendance");
 const {payment,postpayment}=require("../controllers/admin/payment")
-const {register, postregister} = require("../controllers/register");
+
 const {login, postlogin} = require("../controllers/login");
 const home = require("../controllers/home");
 const viewattendance = require("../controllers/students/viewattendance");
@@ -15,12 +15,13 @@ const { edit, postedit } = require("../controllers/admin/edit");
 
 
 
+
 //set up express router
 const router=express.Router();
 
 
 //Common Pages
-router.route("/register").get(register).post(postregister);
+
 router.route("/").get(home);
 router.route("/login").get(login).post(postlogin);
 router.route("/dashboard").get(dashboard);

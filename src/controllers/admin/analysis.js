@@ -12,16 +12,10 @@ storage.setItem("userInfo", {
 const analysis = function (req, res) {
 
  const data = storage.getItem("userInfo");
-   if (!req.isAuthenticated()) {
-     res.render("admin/analysis", {
-       users: "NULL",
-       date: data.date,
-       dailyattendance: "NULL",
-       userisloggedin: false,
-       Admin: false,
-     });
-     return;
-   } 
+  if (!req.isAuthenticated()) {
+    res.redirect("/login");
+    return;
+  }
 
 
    

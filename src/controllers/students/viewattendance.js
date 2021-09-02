@@ -1,13 +1,10 @@
 
 const viewattendance=function(req,res){
 
-    if (!req.isAuthenticated()) {
-      res.render("students/viewattendance", {
-        userisloggedin: false,
-        Admin: false,
-      });
-      return;
-    }
+   if (!req.isAuthenticated()) {
+     res.redirect("/login");
+     return;
+   }
  
     
    res.render("students/viewattendance", {

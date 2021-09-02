@@ -5,12 +5,7 @@ const sendingMail = require("../../nodemailer/mail");
 
 const attendance = function (req, res) {
   if (!req.isAuthenticated()) {
-    res.render("admin/attendance", {
-      users: "NULL",
-      dailyattendance: "NULL",
-      userisloggedin: false,
-      Admin: false,
-    });
+    res.redirect("/login");
     return;
   }
 

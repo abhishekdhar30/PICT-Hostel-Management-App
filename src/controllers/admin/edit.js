@@ -3,12 +3,7 @@ const User = require("../../models/addstudentModels");
 
 const edit = function (req, res) {
   if (!req.isAuthenticated()) {
-    res.render("admin/edit", {
-      userisloggedin: false,
-      Admin: false,
-      // success: req.flash("success"),
-      // danger: "Sorry! You are not Authenticated ! Please Login first",
-    });
+    res.redirect("/login");
     return;
   }
 
@@ -20,38 +15,38 @@ const edit = function (req, res) {
   });
 };
 
-const postedit = function (req, res) {
-  console.log(req.body);
-
-//   const { _id, role } = req.body;
-
-//   if (typeof role == "string") {
-//     if (role != "select") {
-//       var myquery = { _id: _id };
-//       var newvalues = {
-//         $set: { isAdmin: role },
-//       };
-//       Profile.updateOne(myquery, newvalues, function (err, res) {
-//         if (!err) {
-//           console.log("Documents updated successfully");
-//         }
-//       });
-//     }
-//   } else {
-//     for (let i = 0; i < role.length; i++) {
-//       if (role[i] != "select") {
-//         var myquery = { _id: _id[i] };
-//         var newvalues = {
-//           $set: { isAdmin: role[i] },
-//         };
-//         Profile.updateOne(myquery, newvalues, function (err, res) {
-//           if (!err) {
-//             console.log("Documents updated successfully");
-//           }
-//         });
-//       }
-//     }
-//   }
+const postedit = async function (req, res) {
+   console.log(req.body);
+ const {_id,name,city,contact,fcontact,email,femail,room,address}=req.body;
+    
+   if(req.body.delete)
+   {
+      await User.deleteOne({_id:_id[req.body.delete]});
+   }
+   
+   if(req.body.edit)
+   {
+       var myquery = { _id: _id[req.body.edit] };
+       var newvalues = {
+         $set: {
+           name: name[req.body.edit],
+           city: city[req.body.edit],
+           contact: contact[req.body.edit],
+           fatherscontact: fcontact[req.body.edit],
+           email: email[req.body.edit],
+           fathersemail: femail[req.body.edit],
+           room: room[req.body.edit],
+           address: address[req.body.edit],
+         },
+       };
+       User.updateMany(myquery, newvalues, function (err, res) {
+         if (!err) {
+           console.log("Documents updated successfully");
+         }
+       });
+   }
+  
+  
 
   res.redirect("/edit");
 };

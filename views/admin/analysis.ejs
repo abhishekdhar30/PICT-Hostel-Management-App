@@ -71,6 +71,8 @@
             </tr>
           </thead>
           <tbody>
+
+            <%if(users!="NULL"){%>
             <%users.forEach(function(user){ %>
 
             <tr>
@@ -105,6 +107,7 @@
               <%}%>
 
                <%})%>
+               <%}%>
           </tbody>
         </table>
 

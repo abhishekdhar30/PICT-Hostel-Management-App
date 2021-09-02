@@ -2,12 +2,9 @@ const payment = function (req, res) {
 
 
   if (!req.isAuthenticated()) {
-    res.render("admin/payment", {
-      userisloggedin: false,
-      Admin:false
-    });
+    res.redirect("/login");
     return;
-  } 
+  }
 
    res.render("admin/payment", {
      userisloggedin: true,

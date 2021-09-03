@@ -11,8 +11,16 @@ const edit = function (req, res) {
   User.find({}, function (err, users) {
     if (err) console.log(err);
     if (users) {
-      res.render("admin/edit", { users: users, Admin: "true" });
-    } else res.render("admin/edit", { users: "NULL", Admin: "true" });
+      res.render("admin/edit", {
+        users: users,
+        Admin: "true",
+        displayusername: req.user.username,
+      });
+    } else res.render("admin/edit", {
+      users: "NULL",
+      Admin: "true",
+      displayusername: req.user.username,
+    });
   });
 };
 

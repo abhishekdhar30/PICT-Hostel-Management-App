@@ -29,7 +29,7 @@
 
 <form method="POST" action="/addstudent">
   <!-- 2 column grid layout with text inputs for the first and last names -->
-  <div class="row mb-3">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-outline">
         <input type="text" id="name" class="form-control" name="name" />
@@ -45,7 +45,7 @@
   </div>
 
 
-  <div class="row mb-3">
+  <div class="row mb-2">
     <div class="col">
       <div class="form-outline">
         <input type="text" id="contactno" class="form-control" name="contact" />
@@ -61,7 +61,7 @@
   </div>
 
 
-   <div class="row mb-3">
+   <div class="row mb-2">
      <div class="col">
        <div class="form-outline">
          <input type="text" id="email" class="form-control" name="email" />
@@ -76,7 +76,7 @@
      </div>
    </div>
 
-    <div class="row mb-3">
+    <div class="row mb-2">
       <div class="col">
         <div class="form-outline">
           <input type="text" id="room" class="form-control" name="room" />
@@ -99,10 +99,26 @@
     </div>
 
 
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-outline">
+          <input type="number" id="hostelfee" class="form-control" name="hostelfee" />
+          <label class="form-label" for="hostelfee">Hostel fee</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="number" id="amountpaid" class="form-control" name="amountpaid" value="0" />
+          <label class="form-label" for="amountpaid">Amount paid</label>
+        </div>
+      </div>
+    </div>
+
+
 
   <!-- Email input -->
-  <div class="form-outline mb-3">
-    <textarea type="email" id="address" class="form-control" rows="3" name="address"></textarea>
+  <div class="form-outline mb-2">
+    <textarea type="email" id="address" class="form-control" rows="2" name="address"></textarea>
     <label class="form-label" for="address">Address</label>
   </div>
 

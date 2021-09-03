@@ -2,25 +2,24 @@ const Profile = require("../models/users");
 
 const changeprofile = function (req, res) {
     
-    Profile.findOne({ _id: req.user._id }, function (err, profiles) {
-       if(err) console.log(err); 
-       if(profiles)
-       {
+   
+        Profile.findOne({ _id: req.user._id }, function (err, profiles) {
+          if (err) console.log(err);
+          if (profiles) {
             res.render("changeprofile", {
-              displayusername:profiles.username,
-              Admin:profiles.isAdmin,
-              user:profiles
+              displayusername: profiles.username,
+              Admin: profiles.isAdmin,
+              user: profiles,
             });
-        }
-       else
-       {
-          res.render("changeprofile", {
-            displayusername: "No data available",
-            Admin: profiles.isAdmin,
-            user:""
-          });
-        }
-    });
+          } else {
+            res.render("changeprofile", {
+              displayusername: "No data available",
+              Admin: profiles.isAdmin,
+              user: "",
+            });
+          }
+        });
+ 
 };
 
 

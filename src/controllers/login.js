@@ -1,5 +1,6 @@
 const Profile = require("../models/users");
 const passport = require("passport");
+const e = require("connect-flash");
 
 
 
@@ -46,8 +47,14 @@ const postlogin = function (req, res) {
      else {
        passport.authenticate("local")(req, res, function () {
          console.log("Successfully login");
-       
+          if(req.user.isAdmin=="true")
+          {
           res.redirect("/dashboard");
+          }
+          else
+          {
+              res.redirect("/studentdashboard");
+          }
        });
      }
    });
@@ -65,8 +72,12 @@ const postlogin = function (req, res) {
          } else {
            passport.authenticate("local")(req, res, function () {
              
-             res.redirect("/dashboard");
              console.log("Successfully created user");
+              if (req.user.isAdmin == "true") {
+                res.redirect("/dashboard");
+              } else {
+                res.redirect("/studentdashboard");
+              }
            });
          }
        }

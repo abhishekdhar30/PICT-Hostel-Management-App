@@ -44,6 +44,7 @@ const analysis = function (req, res) {
            users: user,
            date: data.date,
            Admin: "true",
+           displayusername:req.user.username,
          });
         }
        
@@ -55,6 +56,7 @@ const analysis = function (req, res) {
             date: data.date,
             users: "NULL",
             Admin: "true",
+            displayusername: req.user.username,
           });
        }
        else if(user.length!=0)
@@ -65,6 +67,7 @@ const analysis = function (req, res) {
            date: data.date,
            dailyattendance: "NULL",
            Admin: "true",
+           displayusername: req.user.username,
          });
        }
        else
@@ -75,6 +78,7 @@ const analysis = function (req, res) {
             date: data.date,
             dailyattendance: "NULL",
             Admin: "true",
+            displayusername: req.user.username,
           });
        }
       }

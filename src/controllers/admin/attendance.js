@@ -23,24 +23,28 @@ const attendance = function (req, res) {
               dailyattendance: person.attendance,
               users: user,
               Admin: "true",
+              displayusername: req.user.username,
             });
           } else if (person) {
             res.render("admin/attendance", {
               dailyattendance: person.attendance,
               users: "NULL",
               Admin: "true",
+              displayusername: req.user.username,
             });
           } else if (user) {
             res.render("admin/attendance", {
               users: user,
               dailyattendance: "NULL",
               Admin: "true",
+              displayusername: req.user.username,
             });
           } else {
             res.render("admin/attendance", {
               users: "NULL",
               dailyattendance: "NULL",
               Admin: "true",
+              displayusername: req.user.username,
             });
           }
         }

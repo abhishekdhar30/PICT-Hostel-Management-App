@@ -12,30 +12,21 @@ const addadmin = function (req, res) {
          if(err) console.log(err);
           if(profiles){
 
-                 Profile.findOne({ _id: req.user._id }, function (err, data) {
-                    if(data)
-                    {
+               
                        res.render("admin/addadmin", {
                          profiles: profiles,
                          Admin: "true",
-                         displayusername: data.username,
+                        displayusername:req.user.username,
                        });
-                    }
-                    else{
-                       res.render("admin/addadmin", {
-                         profiles: profiles,
-                         Admin: "true",
-                         displayusername: "Unauthorized",
-                       });
+                  
+                    
             
-                    }
-                  })
           }
          else{
             res.render("admin/addadmin", {
               profiles: "NULL",
               Admin: "true",
-              displayusername:"No data available",
+              displayusername: req.user.username,
             });
          }  
    })

@@ -19,22 +19,12 @@ const addstudent = function (req, res,err) {
     if (err) console.log(err);
     else {
       if (users) {
-        Profile.findOne({ _id: req.user._id }, function (err, profile) {
-          if(profile)
-          {
+       
           res.render("admin/addstudent", {
             Admin: "true",
-            displayusername: profile.username,
+            displayusername: req.user.username,
           });
-          }
-          else
-          {
-               res.render("admin/addstudent", {
-                 Admin: "true",
-                 displayusername:"Unauthorized",
-               });
-          }
-        });
+        
       }
     }
   });
@@ -54,6 +44,8 @@ const postaddstudent = async function (req, res) {
     contact,
     fcontact,
     femail,
+    hostelfee,
+    amountpaid,
   } = req.body;
 
   const user = new User({
@@ -65,7 +57,9 @@ const postaddstudent = async function (req, res) {
     contact: contact,
     fatherscontact: fcontact,
     fathersemail: femail,
-    address:address
+    address:address,
+    fee:hostelfee,
+    amountpaid:amountpaid
   });
 
   user.save();

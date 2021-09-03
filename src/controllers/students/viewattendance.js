@@ -38,7 +38,7 @@ const viewattendance=function(req,res){
                    date: date,
                    status: status,
                    Admin: "false",
-                   displayusername: user.username,
+                   displayusername: req.user.username,
                  });
              }
              else
@@ -46,9 +46,9 @@ const viewattendance=function(req,res){
                res.render("students/viewattendance", {
                  date: 0,
                  status: 0,
-                 Admin:"false",
-                  displayusername:user.username,
-                });
+                 Admin: "false",
+                 displayusername: req.user.username,
+               });
              }
           })
 
@@ -57,7 +57,7 @@ const viewattendance=function(req,res){
                 date: 0,
                 status: 0,
                 Admin: "false",
-                displayusername:user.username,
+                displayusername: req.user.username,
               });
           }
 
@@ -69,7 +69,7 @@ res.render("students/viewattendance", {
   date: 0,
   status: 0,
   Admin: "false",
-  displayusername: "No data available",
+  displayusername: req.user.username,
 });
  }
 

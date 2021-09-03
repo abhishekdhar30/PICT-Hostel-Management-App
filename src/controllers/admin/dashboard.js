@@ -1,6 +1,6 @@
-const User = require("../models/addstudentModels");
-const Attendance = require("../models/attendance");
-const Profile=require("../models/users")
+const User = require("../../models/addstudentModels");
+const Attendance = require("../../models/attendance");
+const Profile=require("../../models/users")
 
 
 
@@ -29,32 +29,32 @@ const dashboard = function (req, res) {
           {
              
                   if (person && user) {
-                    res.render("dashboard", {
+                    res.render("admin/dashboard", {
                       dailyattendance: person.attendance,
                       users: user,
                       Admin: profiles.isAdmin,
-                      displayusername:profiles.username
+                      displayusername: req.user.username,
                     });
                   } else if (person) {
-                    res.render("dashboard", {
+                    res.render("admin/dashboard", {
                       dailyattendance: person.attendance,
                       users: "NULL",
                       Admin: profiles.isAdmin,
-                      displayusername: profiles.username,
+                      displayusername: req.user.username,
                     });
                   } else if (user) {
-                    res.render("dashboard", {
+                    res.render("admin/dashboard", {
                       users: user,
                       dailyattendance: "NULL",
                       Admin: profiles.isAdmin,
-                      displayusername: profiles.username,
+                      displayusername: req.user.username,
                     });
                   } else {
-                    res.render("dashboard", {
+                    res.render("admin/dashboard", {
                       users: "NULL",
                       dailyattendance: "NULL",
                       Admin: profiles.isAdmin,
-                      displayusername: profiles.username,
+                      displayusername: req.user.username,
                     });
                   }
            

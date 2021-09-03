@@ -23,7 +23,7 @@ const addstudent = function (req, res,err) {
 };
 
 const postaddstudent = async function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     name,
     email,

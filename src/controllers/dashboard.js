@@ -29,17 +29,29 @@ const dashboard = function (req, res) {
           {
              
                   if (person && user) {
-                     res.render("dashboard", {
+                    res.render("dashboard", {
                       dailyattendance: person.attendance,
                       users: user,
-                      Admin:profiles.isAdmin
-                     });
+                      Admin: profiles.isAdmin,
+                    });
+                  } else if (person) {
+                    res.render("dashboard", {
+                      dailyattendance: person.attendance,
+                      users: "NULL",
+                      Admin: profiles.isAdmin,
+                    });
+                  } else if (user) {
+                    res.render("dashboard", {
+                      users: user,
+                      dailyattendance: "NULL",
+                      Admin: profiles.isAdmin,
+                    });
                   } else {
-                     res.render("dashboard", {
-                       users: "NULL",
-                       dailyattendance: "NULL",
-                       Admin: profiles.isAdmin,
-                     });
+                    res.render("dashboard", {
+                      users: "NULL",
+                      dailyattendance: "NULL",
+                      Admin: profiles.isAdmin,
+                    });
                   }
            
           }

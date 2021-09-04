@@ -41,9 +41,11 @@ const userSch = mongoose.Schema(
     },
     fee: {
       type: Number,
+      default:0,
     },
     amountpaid: {
       type: Number,
+      default:0,
     },
   },
   {

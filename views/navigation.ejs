@@ -39,14 +39,32 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-
+ <%if(Admin==="true"){%>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
+       
         <a class="nav-link" href="/dashboard">
+       
+         
+       
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+ <%}else{%>
 
+    <li class="nav-item active">
+
+    
+
+        <a class="nav-link" href="/studentdashboard">
+
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+
+ <%}%>
+
+ 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -116,8 +134,6 @@
 
    <!-- Not Admin -->
       <%}else{%>
-
-
 
 
        <li class="nav-item">

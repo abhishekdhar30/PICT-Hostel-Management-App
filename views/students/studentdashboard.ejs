@@ -1,49 +1,449 @@
 <%-include("../navigation")-%>
 
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
- <link rel="stylesheet" href="css/clock.css">
+<script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+<link rel="stylesheet" href="css/clock.css">
 
 
-  <!-- Begin Page Content -->
-  <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-      <a type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="pdf()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
+
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" onclick="pdf()"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+  </div>
+
+
+
+
+
+    <!-- Content Row -->
+    <div class="row">
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Room Number
+                </div>
+
+
+  <div class="h5 mb-0 font-weight-bold text-gray-800">
+    <div class="row no-gutters align-items-center">
+      <div class="col-auto">
+        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%=roomno%>
+</div>
+</div>
+
+</div>
+
+
+
+
+</div>
+</div>
+<div class="col-auto">
+  <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                  Amount to be paid</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                   <div class="row no-gutters align-items-center">
+                     <div class="col-auto">
+                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%=amount%></div>
+</div>
+
+</div>
+
+
+
+
+</div>
+</div>
+<div class="col-auto">
+  <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Earnings (Monthly) Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-info shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Status
+          </div>
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto">
+              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><%=status%></div>
+            </div>
+
+          
+          </div>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-home fa-2x text-gray-300"></i>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Pending Requests Card Example -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-warning shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+            College Contact No</div>
+
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto">
+              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">9123456784</div>
+            </div>
+
+           
+          </div>
+
+
+
+
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-times-circle fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<!-- Content Row -->
+
+<div class="row">
+
+  <!-- Area Chart -->
+  <div class="col-xl-8 col-lg-7">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Payment chart</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+        <div class="chart-area">
+
+
+
+          <div id="container" style="width: 100%; height: 100%"></div>
+
+<div id="totalfee" hidden><%=fee%></div>
+<div id="amountpaid" hidden><%=totalpaid%></div>
+
+
+
+
+       <script>
+         let totalfee = document.getElementById("totalfee").innerHTML;
+         let amountpaid = document.getElementById("amountpaid").innerHTML;
+         var data = [{
+             x: "Amount to be paid",
+             value: totalfee,
+             normal: {
+               
+                fill: "#e74a3b"
+             }
+           },
+
+           {
+             x: "Amount paid",
+             value: amountpaid,
+             normal: {
+               fill: "#1cc88a"
+             }
+           },
+          
+
+         ];
+
+
+         // create the chart
+         var chart = anychart.pie();
+
+         // set the chart title
+         chart.title("Records");
+
+         // add the data
+         chart.data(data);
+
+         // display the chart in the container
+         chart.container('container');
+         chart.draw();
+       </script>
 
 
 
 
 
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Pie Chart -->
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Clock</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+
+
+
+        <section class="clock container">
+          <div class="clock__container grid">
+            <div class="clock__content grid">
+              <div class="clock__circle">
+                <span class="clock__twelve"></span>
+                <span class="clock__three"></span>
+                <span class="clock__six"></span>
+                <span class="clock__nine"></span>
+
+                <div class="clock__rounder"></div>
+                <div class="clock__hour" id="clock-hour"></div>
+                <div class="clock__minutes" id="clock-minutes"></div>
+                <div class="clock__seconds" id="clock-seconds"></div>
+
+
+
+              </div>
+
+              <div>
+                <div class="clock__text">
+                  <div class="clock__text-hour" id="text-hour"></div>
+                  <div class="clock__text-minutes" id="text-minutes"></div>
+                  <div class="clock__text-ampm" id="text-ampm"></div>
+                </div>
+
+                <div class="clock__date">
+                  <!-- <span id="date-day-week"></span> -->
+                  <span id="date-day"></span>
+                  <span id="date-month"></span>
+                  <span id="date-year"></span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </section>
+
+
+
+      </div>
 
 
 
 
 
+    </div>
+  </div>
+</div>
+</div>
 
 
 
 
-    
+
+<!-- Content Row -->
+<div class="row justify-content-center">
+
+
+ 
+
+  </div>
+  <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+
+<!-- Admin section end's here -->
 
 
 
 
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Your Website 2021</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+
+  <!-- data tables -->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
   <script src="js/clock.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+   <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#table_id').DataTable({
+        autoWidth: false,
+        columnDefs: [{
+          targets: ['_all'],
+          className: 'mdc-data-table__cell'
+        }],
+        "columns": [{
+          "width": "4%"
+        },
+        {
+          "width": "7%"
+        },
+        {
+          "width": "17%"
+        },
+        {
+          "width": "7%"
+        },
+        
+
+        ],
+        "lengthChange": false,
+        "paging": true,
+        "info": false
+      });
+    });
+
+
+
+
+   function pdf()
+   {
+
+   const data=document.getElementById("wrap");
+   let date=new Date();
+   var opt = {
+   margin: 0.3,
+   filename: `Report_${date.toLocaleString()}.pdf`,
+   image: { type: 'jpeg', quality: 2 },
+   html2canvas: { scale: 2 },
+   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+
+
+
+
+   };
+
+  html2pdf().from(data).set(opt).save();
+
+   }
+
+
+
+
+
+  </script>
+
+
+  </body>
+
+  </html>

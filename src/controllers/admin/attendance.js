@@ -24,6 +24,18 @@ const attendance = function (req, res) {
               users: user,
               Admin: "true",
             });
+          } else if (person) {
+            res.render("admin/attendance", {
+              dailyattendance: person.attendance,
+              users: "NULL",
+              Admin: "true",
+            });
+          } else if (user) {
+            res.render("admin/attendance", {
+              users: user,
+              dailyattendance: "NULL",
+              Admin: "true",
+            });
           } else {
             res.render("admin/attendance", {
               users: "NULL",
@@ -122,32 +134,32 @@ const postattendance = async function (req, res) {
     newAttendance.save();
   }
 
-  User.find({}, function (err, users) {
-    users.forEach(function (user) {
-      let dt1 = user.createdAt;
+  // User.find({}, function (err, users) {
+  //   users.forEach(function (user) {
+  //     let dt1 = user.createdAt;
 
-      let dt2 = new Date();
+  //     let dt2 = new Date();
 
-      let diff = Math.floor(
-        (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
-          Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
-          (1000 * 60 * 60 * 24)
-      );
-      diff = diff - user.count;
-      if (diff == 30) {
-        sendingMail(user.fathersemail);
-        User.updateOne(
-          { email: user.email },
-          { $set: { count: user.count + 30 } },
-          function (err, res) {
-            if (!err) {
-              console.log("");
-            } else console.log(err);
-          }
-        );
-      }
-    });
-  });
+  //     let diff = Math.floor(
+  //       (Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+  //         Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+  //         (1000 * 60 * 60 * 24)
+  //     );
+  //     diff = diff - user.count;
+  //     if (diff == 30) {
+  //       sendingMail(user.fathersemail);
+  //       User.updateOne(
+  //         { email: user.email },
+  //         { $set: { count: user.count + 30 } },
+  //         function (err, res) {
+  //           if (!err) {
+  //             console.log("");
+  //           } else console.log(err);
+  //         }
+  //       );
+  //     }
+  //   });
+  // });
   res.redirect("/attendance");
 };
 

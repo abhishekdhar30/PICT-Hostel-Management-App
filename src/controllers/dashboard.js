@@ -33,24 +33,28 @@ const dashboard = function (req, res) {
                       dailyattendance: person.attendance,
                       users: user,
                       Admin: profiles.isAdmin,
+                      displayusername:profiles.username
                     });
                   } else if (person) {
                     res.render("dashboard", {
                       dailyattendance: person.attendance,
                       users: "NULL",
                       Admin: profiles.isAdmin,
+                      displayusername: profiles.username,
                     });
                   } else if (user) {
                     res.render("dashboard", {
                       users: user,
                       dailyattendance: "NULL",
                       Admin: profiles.isAdmin,
+                      displayusername: profiles.username,
                     });
                   } else {
                     res.render("dashboard", {
                       users: "NULL",
                       dailyattendance: "NULL",
                       Admin: profiles.isAdmin,
+                      displayusername: profiles.username,
                     });
                   }
            

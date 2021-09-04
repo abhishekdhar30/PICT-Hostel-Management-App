@@ -26,8 +26,21 @@ const postedit = async function (req, res) {
       Attendance.find({}, function(err,data){
             for (const [key, value] of data.attendance) {
               if (_id == key) {
-                //  await Attendance.deleteOne({ key: _id });
+               
                 data.attendance.delete(_id);
+
+                var myquery = { _id: data._id };
+                var newvalues = {
+                  $set: { attendance: data.attendance },
+                  };
+                Attendance.updateOne(myquery, newvalues, function (err, res) {
+               if (!err) {
+                console.log("Documents updated successfully");
+               }
+                });
+
+
+
               }
             }
          console.log(data);

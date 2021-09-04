@@ -1,7 +1,7 @@
 const nodeMailer = require("nodemailer");
 
 //this code ois used to send email to the email which user entered
-module.exports = function sendingMail(email) {
+module.exports = function sendingMail(message) {
   const transporter = nodeMailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -13,14 +13,8 @@ module.exports = function sendingMail(email) {
     },
   });
 
-  const mailMessage = {
-    from: "greencanvas.com",
-    to: email,
-    subject: `Form Submitted`,
-    text: `You have successfully submitted  form`,
-  };
 
-  transporter.sendMail(mailMessage, function (error, data) {
+  transporter.sendMail(message, function (error, data) {
     if (error) {
       console.log(error.message);
     } else {

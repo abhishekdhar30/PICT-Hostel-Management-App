@@ -1,6 +1,11 @@
 const User = require("../../models/addstudentModels");
 const Attendance = require("../../models/attendance");
 const Profile = require("../../models/users");
+var randtoken = require("rand-token");
+const passport = require("passport");
+
+var sendingMail=require("../../nodemailer/mail");
+const userMessage = require("../../nodemailer/messages/user");
 
 const addstudent = function (req, res,err) {
 
@@ -49,6 +54,23 @@ const postaddstudent = async function (req, res) {
   });
 
   user.save();
+
+  var token = randtoken.generate(64);
+
+    Profile.register({ username: email }, token, function (err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        passport.authenticate("local")(req, res, function () {
+          console.log("Successfully created user");
+        });
+      }
+    });
+
+let message= await userMessage(email,token);
+
+sendingMail(message);
+
 
   const date = Date().toString().substring(0, 15);
 

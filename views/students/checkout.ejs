@@ -1,0 +1,90 @@
+<%-include("../navigation")-%>
+<link rel="stylesheet" href="css/style.css">
+
+
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-10 col-md-8 col-lg-5">
+    <div class="card">
+      <h5 class="card-header">Confirm Payment</h5>
+
+      <div class="card-body">
+        <p class="card-text">Thank you for taking up this decision.</p>
+
+        <dl class="row mt-2">
+          <dt class="col-sm-3">ID</dt>
+          <dd class="col-sm-9" id="orderId"><%- paymentDetail.orderId %> </dd>
+
+          <dt class="col-sm-3">Currency</dt>
+          <dd class="col-sm-9"><%- paymentDetail.currency %> </dd>
+
+          <dt class="col-sm-3">Amount</dt>
+          <dd class="col-sm-9">Rs <%- paymentDetail.amount/100 %>  </dd>
+        </dl>
+
+    
+        <button type="submit" class="btnnn mb-3"  onclick="checkout(event)">Proceed to Pay</button>
+        
+
+          <form id="paymentVerifyForm" action="/verify" method="POST">
+            <input name="razorpay_payment_id" type="hidden" id="razorpay_payment_id" />
+            <input name="razorpay_order_id" type="hidden" id="razorpay_order_id" />
+            <input name="razorpay_signature" type="hidden" id="razorpay_signature" />
+            <h1 id="username" hidden><%=payment.name%></h1>
+            <h1 id="email" hidden><%=payment.email%></h1>
+            <h1 id="contact" hidden><%=payment.contact%></h1>
+            <h1 id="razorpayid" hidden><%=razorpayid%></h1>
+
+            
+            
+            <button name="btn" class="resett" name="btn" value="<%=paymentDetail.orderId %>">Delete</button>
+          </form>
+       
+
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  function checkout(event) {
+  
+
+    const orderId = '<%- JSON.stringify(paymentDetail.orderId) %>'
+    const options = {
+      "key": document.getElementById("razorpayid").innerHTML,
+      "currency": "INR",
+      "name": "Razor Tutorial",
+      "description": "Razor Test Transaction",
+      "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
+      "order_id": JSON.parse(orderId),
+      "handler": function(response) {
+        // console.log(response)
+        document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+        document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+        document.getElementById('razorpay_signature').value = response.razorpay_signature;
+        document.getElementById("paymentVerifyForm").submit();
+      },
+      "prefill": {
+      "name":document.getElementById("username").innerHTML,
+      "email":document.getElementById("email").innerHTML,
+      "contact": document.getElementById("contact").innerHTML
+     
+      
+      },
+      "modal": {
+        ondismiss: function() {
+          alert(`Payment Failed`)
+        }
+      },
+      "theme": {
+        "color": "#4e73df"
+      }
+    };
+    // console.log(options)
+    const razorpay = new Razorpay(options);
+    razorpay.open();
+    event.preventDefault();
+  }
+</script>

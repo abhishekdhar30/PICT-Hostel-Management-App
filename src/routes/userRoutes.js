@@ -14,7 +14,9 @@ const {addadmin, postaddadmin} = require("../controllers/admin/addadmin");
 const { edit, postedit } = require("../controllers/admin/edit");
 const { changeprofile, postchangeprofile } = require("../controllers/changeprofile");
 
-const studentdashboard=require("../controllers/students/studentdashboard")
+const studentdashboard=require("../controllers/students/studentdashboard");
+const { paymentgateway, postpaymentgateway } = require("../controllers/students/viewpayment");
+const verify = require("../controllers/students/verify");
 
 
 //set up express router
@@ -49,7 +51,9 @@ router.route("/addadmin").get(admin, addadmin).post(admin,postaddadmin);
 router.route("/viewattendance").get(viewattendance);
 router.route("/studentdashboard").get(studentdashboard);
 
+router.route("/paymentgateway").get(paymentgateway).post(postpaymentgateway);
 
+router.route("/verify").post(verify);
 
 
 module.exports = router;

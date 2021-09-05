@@ -15,7 +15,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: false,
     },
-    
+    name: {
+      type: String,
+      default: "",
+    },
+    contact: {
+      type: String,
+      default: "",
+    },
+    city: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

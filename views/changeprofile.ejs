@@ -1,0 +1,194 @@
+<%-include("navigation")-%>
+
+<link rel="stylesheet" href="css/style.css">
+
+
+
+<h1 class="text-center mb-4">Profile !</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12">
+
+      <form method="POST" action="/changeprofile">
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+               
+                
+                  <input type="text" id="username" class="form-control" name="username" value="<%=user.username%>" readonly />
+                  <label class="form-label" for="username">Email</label>
+
+              
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+
+                   <%if(Admin=="true"){%>
+                   <input type="text" id="name" class="form-control" name="name" value="<%=user.name%>" />
+                   <label class="form-label" for="name">Full name</label>
+                   <%}else{%>
+                      <input type="text" id="name" class="form-control" name="name" value="<%=user.name%>" readonly/>
+                      <label class="form-label" for="name">Full name</label>
+
+                   <%}%>
+            
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+
+                 <%if(Admin=="true"){%>
+              <input type="text" id="contactno" class="form-control" name="contact" value="<%=user.contact%>" />
+              <label class="form-label" for="contactno">Contact no</label>
+
+                  <%}else{%>
+
+                      <input type="text" id="contactno" class="form-control" name="contact" value="<%=user.contact%>" readonly />
+                      <label class="form-label" for="contactno">Contact no</label>
+                  <%}%>
+            </div>
+          </div>
+          <div class="col">
+                
+                <div class="form-outline">
+                      <%if(Admin=="true"){%>
+              <input type="text" id="city" class="form-control" name="city" value="<%=user.city%>" />
+              <label class="form-label" for="city">City</label>
+                    <%}else{%>
+                    <input type="text" id="city" class="form-control" name="city" value="<%=user.city%>" readonly />
+                    <label class="form-label" for="city">City</label>
+
+                    <%}%>
+
+
+              </div>
+          </div>
+        </div>
+
+
+          <div class="row mb-3">
+             <div class="col">
+            <div class="form-outline">
+              <input type="password" id="password" class="form-control" name="password" />
+              <label class="form-label" for="password">Password</label>
+            </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <div class="form-outline">
+                <input type="password" id="confirmpassword"  class="form-control" name="confirmpassword" />
+                <label class="form-label" for="confirmpassword">Confirm Password</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <div class="form-outline">
+                 <input type="checkbox" onclick="myFunction()"> Show Password
+              </div>
+            </div>
+          </div>
+      
+
+          
+
+
+
+
+
+        <!-- Submit button -->
+        <div class="flex">
+          <button type="button" class="btnnn mb-4" data-bs-toggle="modal" data-bs-target="#static">Update Profile</button>
+          <button type="reset" class="resett mb-4">Reset</button>
+        </div>
+
+
+
+
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="static">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure that you have filled all the information of student correctly ?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Add Student</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+
+<script>
+
+ function myFunction() {
+ var x = document.getElementById("password");
+ var y = document.getElementById("confirmpassword");
+ if (x.type === "password") {
+ x.type = "text";
+ } else {
+ x.type = "password";
+ }
+ 
+
+ if (y.type === "password") {
+ y.type = "text";
+ } else {
+ y.type = "password";
+ }
+
+ }
+
+
+</script>

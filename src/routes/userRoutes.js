@@ -12,6 +12,7 @@ const admin = require("../middleware/auth");
 const dashboard = require("../controllers/dashboard");
 const {addadmin, postaddadmin} = require("../controllers/admin/addadmin");
 const { edit, postedit } = require("../controllers/admin/edit");
+const { changeprofile, postchangeprofile } = require("../controllers/changeprofile");
 
 
 
@@ -25,10 +26,13 @@ const router=express.Router();
 router.route("/").get(home);
 router.route("/login").get(login).post(postlogin);
 router.route("/dashboard").get(dashboard);
+router.route("/changeprofile").get(changeprofile).post(postchangeprofile);
 router.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/login");
 });
+
+
 
 
 

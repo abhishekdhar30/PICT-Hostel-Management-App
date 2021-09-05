@@ -19,7 +19,22 @@ const addstudent = function (req, res,err) {
     if (err) console.log(err);
     else {
       if (users) {
-        res.render("admin/addstudent", { Admin: "true" });
+        Profile.findOne({ _id: req.user._id }, function (err, profile) {
+          if(profile)
+          {
+          res.render("admin/addstudent", {
+            Admin: "true",
+            displayusername: profile.username,
+          });
+          }
+          else
+          {
+               res.render("admin/addstudent", {
+                 Admin: "true",
+                 displayusername:"Unauthorized",
+               });
+          }
+        });
       }
     }
   });
@@ -66,6 +81,26 @@ const postaddstudent = async function (req, res) {
         });
       }
     });
+
+
+var myquery = { username: email };
+var newvalues = {
+  $set: {
+     name:name,
+     contact:contact,
+     city:city,
+  },
+};
+Profile.updateOne(myquery, newvalues, function (err, res) {
+  if (!err) {
+    console.log("Documents updated successfully");
+  }
+});
+
+
+
+
+
 
 let message= await userMessage(email,token);
 

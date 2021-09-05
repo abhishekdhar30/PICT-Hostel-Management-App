@@ -10,21 +10,41 @@ const addadmin = function (req, res) {
 
    Profile.find({},function(err,profiles){
          if(err) console.log(err);
-         if(profiles){
-              res.render("admin/addadmin", {
-                profiles: profiles,
-                Admin: "true",
-              });
-         }
-         else
-            res.render("admin/addadmin", { profiles: "NULL", Admin: "true" });
+          if(profiles){
+
+                 Profile.findOne({ _id: req.user._id }, function (err, data) {
+                    if(data)
+                    {
+                       res.render("admin/addadmin", {
+                         profiles: profiles,
+                         Admin: "true",
+                         displayusername: data.username,
+                       });
+                    }
+                    else{
+                       res.render("admin/addadmin", {
+                         profiles: profiles,
+                         Admin: "true",
+                         displayusername: "Unauthorized",
+                       });
+            
+                    }
+                  })
+          }
+         else{
+            res.render("admin/addadmin", {
+              profiles: "NULL",
+              Admin: "true",
+              displayusername:"No data available",
+            });
+         }  
    })
 
 }
 
 
 const postaddadmin = function (req, res) {
-    console.log(req.body);
+    // console.log(req.body);
 
     const {_id,role}=req.body;
 

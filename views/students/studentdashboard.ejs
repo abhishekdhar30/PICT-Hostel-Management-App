@@ -77,7 +77,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                  Amount to be paid</div>
+                  Amount to pay</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                    <div class="row no-gutters align-items-center">
                      <div class="col-auto">
@@ -186,8 +186,8 @@
          let totalfee = document.getElementById("totalfee").innerHTML;
          let amountpaid = document.getElementById("amountpaid").innerHTML;
          var data = [{
-             x: "Amount to be paid",
-             value: totalfee,
+             x: "Amount to pay",
+             value: totalfee-amountpaid,
              normal: {
                
                 fill: "#e74a3b"

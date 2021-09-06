@@ -5,7 +5,8 @@ const connectDB = () => {
   try {
     
     const conn = mongoose.connect(
-      ` mongodb://localhost:27017/pictHostel`,
+      // ` mongodb://localhost:27017/pictHostel`,
+      `mongodb+srv://${process.env.DATABASE_ID}:${process.env.DATABASE_PASSWORD}@cluster0.rfaz9.mongodb.net/PICT`,
 
       {
         useNewUrlParser: true,

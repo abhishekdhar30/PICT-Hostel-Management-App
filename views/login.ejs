@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/login.css" />
-  <title>Animated Login</title>
+  <title>Login</title>
 </head>
 
 <body>
@@ -20,25 +20,43 @@
       
         <div class="form-wrapper align-center">
           
-          
           <form class="form sign-up" action="/login" method="POST">
+
+
+               <!-- error message start -->
+               <div class="mb-4 alert-messages">
+                 <%if(success.length>0){%>
+                 <div class="alert success">
+                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                   <%=success%>
+                 </div>
+                 <%}else{%>
+                 <%if(danger.length>0){%>
+                 <div class="alert fail">
+                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                   <%=danger%>
+                 </div>
+                 <%}%>
+                        <%}%>
+               </div>
+               <!-- end -->
             
             <div class="input-group">
               <i class="bx bxs-user"></i>
              <!-- vhhb -->
               <input type="email" placeholder="Email" name="username" />
             </div>
-            <!-- <div class="input-group">
-              <i class="bx bx-mail-send"></i>
-              <input type="email" placeholder="Email" />
-            </div> -->
+            <div class="input-group">
+             <i class="bx bxs-check-shield"></i>
+              <input type="text" name="token" placeholder="Enter Secret Key" />
+            </div>
             <div class="input-group">
               <i class="bx bxs-lock-alt"></i>
               <input type="password" placeholder="Password" name="password" />
             </div>
             <div class="input-group">
               <i class="bx bxs-lock-alt"></i>
-              <input type="password" placeholder="Confirm password" />
+              <input type="password" name="confirm" placeholder="Confirm password" />
             </div>
             <button name="btn" value="signup">Sign up</button>
             <p>
@@ -49,20 +67,20 @@
         </div>
 
         <div class="form-wrapper">
-          <div class="social-list align-center sign-up">
-            <div class="align-center facebook-bg">
+          <!-- <div class="social-list align-center sign-up"> -->
+            <!-- <div class="align-center facebook-bg">
               <i class="bx bxl-facebook"></i>
-            </div>
-            <div class="align-center google-bg">
+            </div> -->
+            <!-- <div class="align-center google-bg">
               <i class="bx bxl-google"></i>
-            </div>
-            <div class="align-center twitter-bg">
+            </div> -->
+            <!-- <div class="align-center twitter-bg">
               <i class="bx bxl-twitter"></i>
-            </div>
-            <div class="align-center insta-bg">
+            </div> -->
+            <!-- <div class="align-center insta-bg">
               <i class="bx bxl-instagram-alt"></i>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
         </div>
       </div>
       <!-- End Sign Up -->
@@ -70,8 +88,28 @@
       <div class="col align-center flex-col sign-in">
        
         <div class="form-wrapper align-center">
-         
+
+        
           <form class="form sign-in" action="/login" method="POST">
+
+  <!-- error message start -->
+  <div class="mb-4 alert-messages">
+    <%if(success.length>0){%>
+    <div class="alert success">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <%=success%>
+    </div>
+    <%}else{%>
+    <%if(danger.length>0){%>
+    <div class="alert fail">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <%=danger%>
+    </div>
+    <%}%>
+                        <%}%>
+  </div>
+  <!-- end -->
+
             <div class="input-group">
               <i class="bx bxs-user"></i>
               <input type="email" placeholder="Email" name="username" />
@@ -81,9 +119,9 @@
               <input type="password" placeholder="Password" name="password" />
             </div>
             <button name="btn" value="signin">Sign in</button>
-            <p>
+            <!-- <p>
               <b>Forgot password?</b>
-            </p>
+            </p> -->
             <p>
               <span> Don't have an account? </span>
               <b id="sign-up">Sign up here</b>
@@ -92,7 +130,7 @@
           </form>
        
         </div>
-
+<!-- 
         <div class="form-wrapper">
           <div class="social-list align-center sign-in">
             <div class="align-center facebook-bg">
@@ -109,7 +147,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- End Sign In -->
     </div>
     <!-- End Row -->
@@ -121,7 +159,8 @@
           <h2>Welcome Back!</h2>
          
           <p>
-            To enjoy our services you must log in...If you haven't register please register first !
+          
+             To enjoy our services you must Login first !
           </p>
         </div>
         <div class="img sign-in">
@@ -137,9 +176,7 @@
         <div class="text sign-up">
           <h2>Join with us</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae et
-            cumque consectetur illo accusamus impedit eos ut. Eos, odit
-            facilis.
+          To keep connected with us please signup with your personal information by username email and password
           </p>
         </div>
       </div>

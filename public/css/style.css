@@ -42,6 +42,8 @@
 
   /*              end's here           */
 
+
+
 .btnnn{
     width:200px;
     height:40px;
@@ -84,6 +86,32 @@
    
 }
 
+
+
+/* For displaying error and success messages */
+.alert-messages .success {
+    background-color: #2FB986;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-messages .fail {
+    background-color: #f44336;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-messages .closebtn {
+    cursor: pointer;
+    padding-right: 8px;
+    font-size: 16px !important;
+    font-style: normal !important;
+    color: #ffffff !important;
+}
 
 
 .dangerr{
@@ -152,6 +180,22 @@ select {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: stretch;
+}
+
+
+@media(max-width:700px){
+    .flexx{
+        display: flex;
+    
+        flex-direction:column;
+      
+    }
+
+    .btnnn,.dangerr{
+        align-self: center;
+        margin-bottom: 20px;
+    }
+    
 }
 
 

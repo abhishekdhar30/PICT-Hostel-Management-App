@@ -8,10 +8,28 @@ const admin = async(req, res, cb) => {
      cb(null);
     // next();
   } else {
-
-    res.status(401);
-    cb(new Error("Not authorized as an admin"));
+    // res.render("home");
+    
   }
 };
 
-module.exports= admin ;
+
+
+const isauthenticated = async (req, res, cb) => {
+ if (!req.isAuthenticated()) {
+   req.flash(
+     "error",
+     "Error: User is not authenticated ! You have to first login to get access to the page"
+   );
+   res.redirect("/login");
+ }
+ else
+ {
+    cb(null);
+ }
+
+};
+
+
+
+module.exports= {admin,isauthenticated} ;

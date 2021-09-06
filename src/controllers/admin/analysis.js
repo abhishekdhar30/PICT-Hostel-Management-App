@@ -11,12 +11,8 @@ storage.setItem("userInfo", {
 
 const analysis = function (req, res) {
 
- const data = storage.getItem("userInfo");
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
-
+ 
+const data = storage.getItem("userInfo");
 
    
 
@@ -44,7 +40,9 @@ const analysis = function (req, res) {
            users: user,
            date: data.date,
            Admin: "true",
-           displayusername:req.user.username,
+           displayusername: req.user.username,
+           success: req.flash("success"),
+           danger: req.flash("error"),
          });
         }
        
@@ -57,6 +55,8 @@ const analysis = function (req, res) {
             users: "NULL",
             Admin: "true",
             displayusername: req.user.username,
+            success: req.flash("success"),
+            danger: req.flash("error"),
           });
        }
        else if(user.length!=0)
@@ -68,6 +68,8 @@ const analysis = function (req, res) {
            dailyattendance: "NULL",
            Admin: "true",
            displayusername: req.user.username,
+           success: req.flash("success"),
+           danger: req.flash("error"),
          });
        }
        else
@@ -79,6 +81,8 @@ const analysis = function (req, res) {
             dailyattendance: "NULL",
             Admin: "true",
             displayusername: req.user.username,
+            success: req.flash("success"),
+            danger: req.flash("error"),
           });
        }
       }
@@ -104,7 +108,8 @@ let converteddate = moment(datee).toString().substring(0, 15);
 storage.setItem("userInfo", {
   date: converteddate,
 });
-
+   
+ req.flash("success", `You have successfully Changed the date for Analysis !`);
  }
 
 
@@ -127,6 +132,7 @@ else if(req.body.btn==2)
     createdAt: { $lt: deletionDate },
   });
   }
+   req.flash("success", `Records are deleted successfully !`);
 }
 
 

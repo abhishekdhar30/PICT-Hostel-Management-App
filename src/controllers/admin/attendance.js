@@ -4,10 +4,8 @@ const moment = require("moment");
 const sendingMail = require("../../nodemailer/mail");
 
 const attendance = function (req, res) {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
+
+
 
   User.find({}, function (err, user) {
     if (err) {
@@ -24,6 +22,8 @@ const attendance = function (req, res) {
               users: user,
               Admin: "true",
               displayusername: req.user.username,
+              success: req.flash("success"),
+              danger: req.flash("error"),
             });
           } else if (person) {
             res.render("admin/attendance", {
@@ -31,6 +31,8 @@ const attendance = function (req, res) {
               users: "NULL",
               Admin: "true",
               displayusername: req.user.username,
+              success: req.flash("success"),
+              danger: req.flash("error"),
             });
           } else if (user) {
             res.render("admin/attendance", {
@@ -38,6 +40,8 @@ const attendance = function (req, res) {
               dailyattendance: "NULL",
               Admin: "true",
               displayusername: req.user.username,
+              success: req.flash("success"),
+              danger: req.flash("error"),
             });
           } else {
             res.render("admin/attendance", {
@@ -45,19 +49,23 @@ const attendance = function (req, res) {
               dailyattendance: "NULL",
               Admin: "true",
               displayusername: req.user.username,
+              success: req.flash("success"),
+              danger: req.flash("error"),
             });
           }
         }
       });
 
-      // res.render("admin/attendance", { users: user });
+     
     }
   });
 };
 
 const postattendance = async function (req, res) {
+
+
   const date = Date().toString().substring(0, 15);
-   console.log(req.body);
+  //  console.log(req.body);
 
  const { roomno, name, contact } = req.body;
 
@@ -138,6 +146,8 @@ const postattendance = async function (req, res) {
     newAttendance.save();
   }
 
+     req.flash("success", `Attendance of ${date} is successfully being marked !`);
+
   // User.find({}, function (err, users) {
   //   users.forEach(function (user) {
   //     let dt1 = user.createdAt;
@@ -151,6 +161,11 @@ const postattendance = async function (req, res) {
   //     );
   //     diff = diff - user.count;
   //     if (diff == 30) {
+
+  //       req.flash(
+  //         "success",
+  //         `and mail is also send to parents `
+  //       );
   //       sendingMail(user.fathersemail);
   //       User.updateOne(
   //         { email: user.email },

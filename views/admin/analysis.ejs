@@ -11,6 +11,22 @@
 <link rel="stylesheet" href="css/style.css">
 
 
+  <style>
+   .dataTables_wrapper .dt-buttons {
+   float:none;
+   text-align:center;
+   margin-bottom:35px
+   }
+
+
+   .dataTables_filter {
+   border-radius: 10px;
+   }
+
+
+  </style>
+
+
 
 
 
@@ -36,6 +52,25 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive mt-5 mb-5">
+
+
+        <!-- error message start -->
+        <div class="mb-4 alert-messages">
+          <%if(success.length>0){%>
+          <div class="alert success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <%=success%>
+          </div>
+          <%}else{%>
+          <%if(danger.length>0){%>
+          <div class="alert fail">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <%=danger%>
+          </div>
+          <%}%>
+                        <%}%>
+        </div>
+        <!-- end -->
 
         <!-- Button trigger modal -->
 
@@ -180,17 +215,7 @@
 
 
 
-<!-- buttons -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
         
 
 
@@ -203,6 +228,19 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+     <!-- data tables -->
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 
 
 
@@ -219,27 +257,30 @@
                   targets: ['_all'],
                   className: 'mdc-data-table__cell'
                 }],
-                "columns": [{
-                    "width": "5%"
-                  },
-                  {
-                    "width": "5%"
-                  },
-                  {
-                    "width": "5%"
-                  },
-                  {
-                    "width": "5%"
-                  },
-                  {
-                    "width": "5%"
-                  },
+                "columns": [
+                { "width": "5%" },
+                { "width": "5%" },
+                { "width": "5%" },
+                { "width": "5%" },
+                { "width": "5%" },
+               
 
+
+                ],
+                "buttons": [
+                { "extend": 'pdf', "text":'Pdf',"className": 'btn btn-dark btn-xs mb-0'},
+                 { "extend": 'csv', "text":'CSV',"className": 'btn btn-dark btn-xs mb-0'},
+                  { "extend": 'copy', "text":'Copy',"className": 'btn btn-dark btn-xs mb-0'},
+                   { "extend": 'excel', "text":'Excel',"className": 'btn btn-dark btn-xs mb-0'},
+                    { "extend": 'print', "text":'Print',"className": 'btn btn-dark btn-xs mb-0'}
 
                 ],
                 "lengthChange": false,
                 "paging": false,
                 "info": false,
+                fixedColumns: true,
+                 "autoWidth": false,
+
 
 
 

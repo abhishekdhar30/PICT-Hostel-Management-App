@@ -42,7 +42,7 @@ const studentdashboard=function(req,res){
                   Admin: "false",
                   displayusername: req.user.username,
                   amount: addstudent.fee - addstudent.amountpaid,
-                  roomno: usaddstudenter.room,
+                  roomno: addstudent.room,
                   fee:addstudent.fee,
                   totalpaid:addstudent.amountpaid
                 });
@@ -50,7 +50,7 @@ const studentdashboard=function(req,res){
             });
           } else {
             res.render("students/studentdashboard", {
-              status: "Not Registered!",
+              status: "Not Registered !",
               Admin: "false",
               displayusername: req.user.username,
               amount: "Not Registed",

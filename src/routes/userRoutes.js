@@ -8,7 +8,7 @@ const {payment,postpayment}=require("../controllers/admin/payment")
 const {login, postlogin} = require("../controllers/login");
 const home = require("../controllers/home");
 const viewattendance = require("../controllers/students/viewattendance");
-const admin = require("../middleware/auth");
+const {admin, isauthenticated} = require("../middleware/auth");
 const dashboard = require("../controllers/admin/dashboard");
 const {addadmin, postaddadmin} = require("../controllers/admin/addadmin");
 const { edit, postedit } = require("../controllers/admin/edit");
@@ -27,8 +27,10 @@ const router=express.Router();
 
 router.route("/").get(home);
 router.route("/login").get(login).post(postlogin);
-router.route("/changeprofile").get(changeprofile).post(postchangeprofile);
+router.route("/changeprofile").get(isauthenticated,changeprofile).post(isauthenticated,postchangeprofile);
 router.get("/logout", function (req, res) {
+
+   req.flash("success", "You have successfully Logged Out !");
   req.logout();
   res.redirect("/login");
 });
@@ -38,22 +40,22 @@ router.get("/logout", function (req, res) {
 
 
 //Admin Pages
-router.route("/analysis").get(admin, analysis).post(admin,postanalysis);
-router.route("/addstudent").get(admin, addstudent).post(admin,postaddstudent);
-router.route("/attendance").get(admin, attendance).post(admin,postattendance);
-router.route("/payment").get(admin, payment).post(admin,postpayment);
-router.route("/addadmin").get(admin, addadmin).post(admin,postaddadmin);
- router.route("/edit").get(admin, edit).post(admin,postedit);
- router.route("/dashboard").get(dashboard);
+router.route("/analysis").get(isauthenticated, admin, analysis).post(isauthenticated, admin, postanalysis);
+router.route("/addstudent").get(isauthenticated,admin, addstudent).post(isauthenticated,admin,postaddstudent);
+router.route("/attendance").get(isauthenticated,admin, attendance).post(isauthenticated,admin,postattendance);
+router.route("/payment").get(isauthenticated,admin, payment).post(isauthenticated,admin,postpayment);
+router.route("/addadmin").get(isauthenticated,admin, addadmin).post(isauthenticated,admin,postaddadmin);
+ router.route("/edit").get(isauthenticated,admin, edit).post(isauthenticated,admin,postedit);
+ router.route("/dashboard").get(isauthenticated, admin, dashboard);
 
 
 //Students Pages
-router.route("/viewattendance").get(viewattendance);
-router.route("/studentdashboard").get(studentdashboard);
+router.route("/viewattendance").get(isauthenticated,viewattendance);
+router.route("/studentdashboard").get(isauthenticated,studentdashboard);
 
-router.route("/paymentgateway").get(paymentgateway).post(postpaymentgateway);
+router.route("/paymentgateway").get(isauthenticated,paymentgateway).post(isauthenticated,postpaymentgateway);
 
-router.route("/verify").post(verify);
+router.route("/verify").post(isauthenticated,verify);
 
 
 module.exports = router;

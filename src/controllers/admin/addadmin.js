@@ -3,10 +3,6 @@ const Profile = require("../../models/users")
 
 const addadmin = function (req, res) {
 
- if (!req.isAuthenticated()) {
-   res.redirect("/login");
-   return;
- }
 
    Profile.find({},function(err,profiles){
          if(err) console.log(err);
@@ -15,8 +11,11 @@ const addadmin = function (req, res) {
                
                        res.render("admin/addadmin", {
                          profiles: profiles,
+                         currentuser:req.user._id,
                          Admin: "true",
-                        displayusername:req.user.username,
+                         displayusername: req.user.username,
+                         success: req.flash("success"),
+                         danger: req.flash("error"),
                        });
                   
                     
@@ -27,6 +26,8 @@ const addadmin = function (req, res) {
               profiles: "NULL",
               Admin: "true",
               displayusername: req.user.username,
+              success: req.flash("success"),
+              danger: req.flash("error"),
             });
          }  
    })
@@ -76,7 +77,7 @@ const postaddadmin = function (req, res) {
            }
     }
 
-
+ req.flash("success", `You have successfully updated the Admin section !`);
 
 
   res.redirect("/addadmin");

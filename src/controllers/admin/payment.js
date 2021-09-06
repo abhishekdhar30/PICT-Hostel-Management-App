@@ -6,11 +6,6 @@ const paymentmessage = require("../../nodemailer/messages/paymentmail");
 const payment = function (req, res) {
 
 
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
-
 
   Profile.find({}, function (err, profiles) {
 
@@ -21,7 +16,9 @@ const payment = function (req, res) {
     res.render("admin/payment", {
       Admin: "true",
       displayusername: req.user.username,
-      profiles:profiles
+      profiles: profiles,
+      success: req.flash("success"),
+      danger: req.flash("error"),
     });
 
   }else{
@@ -29,7 +26,9 @@ const payment = function (req, res) {
     res.render("admin/payment", {
       Admin: "true",
       displayusername: req.user.username,
-      profiles:0
+      profiles: 0,
+      success: req.flash("success"),
+      danger: req.flash("error"),
     });
 
 
@@ -42,7 +41,7 @@ const payment = function (req, res) {
 
 
 const postpayment = async function (req, res) {
-console.log(req.body);
+//console.log(req.body);
 
 const {_id,newamount,newfee,mail,paymentbtn,email,fathersemail,balance}=req.body;
 
@@ -59,11 +58,22 @@ if(typeof(_id)=="string")
           console.log("Documents updated successfully");
         }
       });
+       req.flash(
+         "success",
+         `You have successfully updated the Payment section of ${email} !`
+       );
+         res.redirect("/payment");
     }
     else if(mail)
     {
         const message=await paymentmessage(email,fathersemail,balance);
         sendingMail(message);
+
+         req.flash(
+           "success",
+           `You have successfully sended the mail to ${email} and ${fathersemail} !`
+         );
+           res.redirect("/payment");
     } 
 }
 
@@ -80,17 +90,30 @@ else{
                     console.log("Documents updated successfully");
                   }
                 });
+
       }
+
+       req.flash(
+         "success",
+         `You have successfully updated the Payment section !`
+       );
+       res.redirect("/payment");
     }
     else if(mail)
     {
-      console.log(req.body);
+      //console.log(req.body);
          const message = await paymentmessage(email[mail], fathersemail[mail], balance[mail]);
          sendingMail(message);
+
+           req.flash(
+             "success",
+             `You have successfully sended the mail to ${email[mail]} and ${fathersemail[mail]} !`
+           );
+           res.redirect("/payment");
     }
 }
 
-  res.redirect("/payment");
+
 }
 
 

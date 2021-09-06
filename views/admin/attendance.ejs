@@ -12,7 +12,7 @@
   <h5 class="text-center"><%=date%></h5>
 
 
-
+     
 
 
 
@@ -22,7 +22,30 @@
                 <h2>Available files are listed below</h2>
             </div> -->
             <div class="row justify-content-center">
-              <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
+              <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 table-responsive">
+
+
+
+                 <!-- error message start -->
+                 <div class="mb-4 alert-messages">
+                   <%if(success.length>0){%>
+                   <div class="alert success">
+                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                     <%=success%>
+                   </div>
+                   <%}else{%>
+                   <%if(danger.length>0){%>
+                   <div class="alert fail">
+                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                     <%=danger%>
+                   </div>
+                   <%}%>
+                        <%}%>
+                 </div>
+                 <!-- end -->
+
+
+
                 <table class="table table-bordered table-hover align-middle text-center display" id="table_id" style="border:none">
                   <thead>
                     <tr>
@@ -136,9 +159,7 @@
 
   </form>
 
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-  <script type="text/javascript" charset="utf8"
-    src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
     integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
     crossorigin="anonymous"></script>
@@ -146,9 +167,12 @@
     integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
     crossorigin="anonymous"></script>
 
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
 
 
-    <!-- Core plugin JavaScript-->
+
+  <!--     Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
@@ -158,31 +182,48 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
+
+ <!-- data tables -->
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+ <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+ 
+
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       $('#table_id').DataTable({
         autoWidth: false,
-        columnDefs: [
+        columnDefs: [{
+          targets: ['_all'],
+          className: 'mdc-data-table__cell'
+        }],
+        "columns": [{
+            "width": "2%"
+          },
           {
-            targets: ['_all'],
-            className: 'mdc-data-table__cell'
-          }
-        ],
-        "columns": [
-          { "width": "5%" },
-          { "width": "5%" },
-          { "width": "5%" },
-          { "width": "5%" },
-          { "width": "5%" },
-          { "width": "5%" },
+            "width": "10%%"
+          },
+          {
+            "width": "17%"
+          },
+          {
+            "width": "10%"
+          },
+          {
+          "width": "17%"
+          },
+          {
+          "width": "7%"
+          },
+
 
         ],
-        "lengthChange": true,
-        "paging": true,
-        "info": false,
-         responsive: true
+        "lengthChange": false,
+        "paging": false,
+        "info": false
       });
     });
+
   </script>
 
 

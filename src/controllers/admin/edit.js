@@ -3,10 +3,7 @@ const Attendance = require("../../models/attendance");
 
 
 const edit = function (req, res) {
-  if (!req.isAuthenticated()) {
-    res.redirect("/login");
-    return;
-  }
+ 
 
   User.find({}, function (err, users) {
     if (err) console.log(err);
@@ -15,11 +12,15 @@ const edit = function (req, res) {
         users: users,
         Admin: "true",
         displayusername: req.user.username,
+        success: req.flash("success"),
+        danger: req.flash("error"),
       });
     } else res.render("admin/edit", {
       users: "NULL",
       Admin: "true",
       displayusername: req.user.username,
+      success: req.flash("success"),
+      danger: req.flash("error"),
     });
   });
 };
@@ -51,7 +52,12 @@ const postedit = async function (req, res) {
 
               }
             }
+             req.flash(
+               "success",
+               `You have successfully deleted the details of ${email} !`
+             );
          console.log(data);
+          res.redirect("/edit");
       })
       
    } 
@@ -83,6 +89,11 @@ const postedit = async function (req, res) {
 
         }
       });
+       req.flash(
+         "success",
+         `You have successfully deleted the details of ${email[req.body.delete]} !`
+       );
+        res.redirect("/edit");
 
    }
 
@@ -106,6 +117,9 @@ const postedit = async function (req, res) {
         console.log("Documents updated successfully");
       }
     });
+
+      req.flash("success", `You have successfully edited the details !`);
+     res.redirect("/edit");
   } else if (req.body.edit) {
     var myquery = { _id: _id[req.body.edit] };
     var newvalues = {
@@ -125,11 +139,15 @@ const postedit = async function (req, res) {
         console.log("Documents updated successfully");
       }
     });
+
+      req.flash("success", `You have successfully edited the details !`);
+
+    res.redirect("/edit");
   }
   
-  
 
-  res.redirect("/edit");
+
+  // res.redirect("/edit");
 };
 
 module.exports = { edit, postedit };

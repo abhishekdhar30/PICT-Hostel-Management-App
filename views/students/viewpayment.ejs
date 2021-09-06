@@ -22,19 +22,38 @@
    <div class="row justify-content-center">
      <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12">
 
+
+         <!-- error message start -->
+         <div class="mb-4 alert-messages">
+           <%if(success.length>0){%>
+           <div class="alert success">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             <%=success%>
+           </div>
+           <%}else{%>
+           <%if(danger.length>0){%>
+           <div class="alert fail">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             <%=danger%>
+           </div>
+           <%}%>
+                        <%}%>
+         </div>
+         <!-- end -->
+
     <form method="POST" action="/paymentgateway">
          <!-- 2 column grid layout with text inputs for the first and last names -->
          <div class="row mb-4">
            <div class="col">
              <div class="form-outline">
                <input type="text" id="name" class="form-control" name="name" />
-               <label class="form-label" for="name">Full name</label>
+               <label class="form-label" for="name">Full name *</label>
              </div>
            </div>
            <div class="col">
              <div class="form-outline">
                <input type="text" id="email" class="form-control" name="email" />
-               <label class="form-label" for="email">Email</label>
+               <label class="form-label" for="email">Email *</label>
              </div>
            </div>
          </div>
@@ -46,13 +65,13 @@
            <div class="col">
              <div class="form-outline">
                <input type="text" id="contact" class="form-control" name="contact" />
-               <label class="form-label" for="contact">Contact</label>
+               <label class="form-label" for="contact">Contact *</label>
              </div>
            </div>
            <div class="col">
              <div class="form-outline">
                <input type="number" id="amount" class="form-control" name="amount" />
-               <label class="form-label" for="amount">Amount to pay</label>
+               <label class="form-label" for="amount">Amount to pay *</label>
              </div>
            </div>
          </div>

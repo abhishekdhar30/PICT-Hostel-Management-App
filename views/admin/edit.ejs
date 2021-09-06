@@ -1,0 +1,320 @@
+<%-include("../navigation")-%>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+
+<style>
+
+
+ .datatable td {
+ overflow: hidden; /* this is what fixes the expansion */
+ text-overflow: ellipsis; /* not supported in all browsers, but I accepted the tradeoff */
+ white-space: nowrap;
+ }
+
+ table {
+ table-layout:fixed;
+ }
+ td{
+ overflow:hidden;
+ text-overflow: ellipsis;
+ }
+
+</style>
+
+
+
+<h1 class="text-center">Edit Student Info</h1>
+
+
+  <form method="POST" action="/edit">
+
+    <div class="container my-5">
+      <!-- <div class="row justify-content-center text-center mb-4">
+                <h2>Available files are listed below</h2>
+            </div> -->
+      <div class="row justify-content-center">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+
+
+<!-- error message start -->
+<div class="mb-4 alert-messages">
+  <%if(success.length>0){%>
+  <div class="alert success">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <%=success%>
+  </div>
+  <%}else{%>
+  <%if(danger.length>0){%>
+  <div class="alert fail">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <%=danger%>
+  </div>
+  <%}%>
+                        <%}%>
+</div>
+<!-- end -->
+
+
+          <table class="table table-bordered table-hover align-middle text-center display" id="table_id" style="border:none;width: 1000px;">
+            <thead>
+              <tr>
+
+                <th scope="col">Room No</th>
+                <th scope="col">Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Student Contact</th>
+                <th scope="col">Father's Contact</th>
+                <th scope="col">Student Email</th>
+                <th scope="col">Father's Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Edit / Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%if(users!="NULL"){%>
+              <%for(let i=0;i<users.length;i++){ %>
+              <tr>
+                <td>
+                  <%=users[i].room%>
+                </td>
+
+                <td><%=users[i].name%></td>
+                 <td><%=users[i].city%></td>
+                  <td><%=users[i].contact%></td>
+                   <td><%=users[i].fatherscontact%></td>
+                    <td><%=users[i].email%></td>
+                     <td><%=users[i].fathersemail%></td>
+                      <td><%=users[i].address%></td>
+               
+                      
+                    
+           
+
+                <td>
+                     <button type="button" class="" style="border:none" data-bs-toggle="modal" data-bs-target="#edit<%=i%>"><i class="fas fa-user-edit"></i></button>
+                     <button type="button" style="border: none" data-bs-toggle="modal" data-bs-target="#staticBackdrop<%=i%>"><i class="fas fa-trash" style="color:red;"></i></button>
+
+                </td>
+
+
+              </tr>
+
+
+
+
+              <% }%>
+              <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    
+  <%if(users!="NULL"){%>
+  <%for(let i=0;i<users.length;i++){ %>
+
+<!-- Edit -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="edit<%=i%>">
+
+    
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Student Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="name" class="form-control"  name="name" value="<%=users[i].name%>" />
+              <label class="form-label" for="name">Full name *</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="city" class="form-control" name="city" value="<%=users[i].city%>" />
+              <label class="form-label" for="city">City *</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="contactno" class="form-control" name="contact" value="<%=users[i].contact%>" />
+              <label class="form-label" for="contactno">Student Contact no *</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="fatherscontactno" class="form-control" name="fcontact" value="<%=users[i].fatherscontact%>" />
+              <label class="form-label" for="fatherscontactno">Father's Contact no *</label>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="email" class="form-control" name="email" value="<%=users[i].email%>" />
+              <label class="form-label" for="email">Student Email *</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="fathersemail" class="form-control" name="femail" value="<%=users[i].fathersemail%>" />
+              <label class="form-label" for="fathersemail">Father's Email *</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <div class="form-outline">
+              <input type="text" id="room" class="form-control" name="room" value="<%=users[i].room%>" />
+              <label class="form-label" for="room">Room No *</label>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Email input -->
+        <div class="form-outline mb-3">
+          <textarea type="email" id="address" class="form-control" rows="3" name="address"><%=users[i].address%></textarea>
+          <label class="form-label" for="address">Address *</label>
+        </div>
+
+
+       <input name="_id" value="<%=users[i]._id%>" hidden >
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="btnn" class="btn" name="edit" value="<%=i%>">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Delete -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="staticBackdrop<%=i%>">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Student</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to delete the student ? All the data related to that student will be removed.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" class="btn" name="delete" value="<%=i%>">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <% }%>
+      <%}%>
+
+
+  </form>
+
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Abhishek Dhar</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"></script>
+
+
+
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#table_id').DataTable({
+        autoWidth: false,
+        columnDefs: [
+          {
+            targets: ['_all'],
+            className: 'mdc-data-table__cell'
+          }
+        ],
+        "columns": [
+          { "width": "3%" },
+          { "width": "5%" },
+          { "width": "5%" },
+           { "width": "5%" },
+           { "width": "5%" },
+           { "width": "5%" },
+            { "width": "5%" },
+            { "width": "5%" },
+            { "width": "5%" },
+           
+
+        ],
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+         responsive: true
+      });
+    });
+     
+   
+
+  </script>

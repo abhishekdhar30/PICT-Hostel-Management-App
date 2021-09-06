@@ -1,0 +1,104 @@
+ <%-include("../navigation")-%>
+      
+ <h1 class="text-center">Attendance Report !</h1>
+
+       
+
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.material.min.css">
+ <link rel="stylesheet" href="css/style.css">
+
+
+
+   <div class="container my-5">
+     <!-- <div class="row justify-content-center text-center mb-4">
+                <h2>Available files are listed below</h2>
+            </div> -->
+     <div class="row justify-content-center">
+       <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 table-responsive">
+         <table class="table table-bordered table-hover align-middle text-center display" id="table_id" style="border: none;">
+           <thead>
+             <tr>
+
+               <th scope="col">Date</th>
+               <th scope="col">Status</th>
+               
+             </tr>
+           </thead>
+           <tbody>
+
+            <%for(let i=0;i<date.length;i++){%>
+             <tr>
+               <td>
+                  <%=date[i]%>
+               </td>
+               <td>
+                 <%=status[i]%>
+               </td>
+           </tr>
+           <%}%>
+             
+
+
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+
+
+   <!-- Footer -->
+   <footer class="sticky-footer bg-white">
+     <div class="container my-auto">
+       <div class="copyright text-center my-auto">
+         <span>Copyright &copy; Abhishek Dhar</span>
+       </div>
+     </div>
+   </footer>
+   <!-- End of Footer -->
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
+
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+ <script>
+   $(document).ready(function() {
+     $('#table_id').DataTable({
+       autoWidth: false,
+       columnDefs: [{
+         targets: ['_all'],
+         className: 'mdc-data-table__cell'
+       }],
+       "columns": [{
+           "width": "5%"
+         },
+         {
+           "width": "5%"
+         },
+       
+
+       ],
+       "lengthChange": false,
+       "paging": false,
+       "info": false
+     });
+   });
+ </script>

@@ -1,1 +1,228 @@
- <%-include("header")-%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PICT Hostel</title>
+
+  <!-- google fonts cdn link  -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  <!-- custom css file link  -->
+  <link rel="stylesheet" href="css/homepage.css">
+
+   <!-- CSS -->
+   
+   <link rel="stylesheet" href="css/mdb.min.css" />
+
+</head>
+
+<body>
+
+  <!-- heading section starts  -->
+
+  <header>
+
+    <a href="/" class="logo"><i class="fas fa-hotel"></i>PICT HOSTEL</a>
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <nav class="navbarr">
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
+
+        <%if(!userisloggedin){%>
+         <li><a href="/login">Login / Register</a></li>
+         <%}else{%>
+           
+           <li><a href="#"><%=user.username%></a></li>
+              <li><a href="/logout">Logout</a></li>
+
+         <%}%> 
+       
+     
+       
+      </ul>
+    </nav>
+
+  </header>
+
+  <!-- heading section ends -->
+
+  <!-- home section starts  -->
+
+  <section class="home" id="home">
+
+    <div class="content">
+      <h1>Welcome To PICT !</h1>
+      <p>Looking for a hostel ? Book your stay with us now we have a long history of providing legendary service !</p>
+      
+      
+      <%if(user){%>
+
+       <% if(user.isAdmin=="true"){%>
+      <a href="/dashboard"><button class="btnnn">Dashboard !</button></a>
+      <%}else{%>
+       
+          <a href="/studentdashboard"><button class="btnnn">Dashboard !</button></a>
+
+        <%}%>
+
+
+      <%}else{%>
+       <a href="/login"><button class="btnnn">Get Started !</button></a>
+      <%}%>
+   
+    </div>
+
+    <div class="image">
+      <img src="images/test.png" alt="">
+    </div>
+
+  </section>
+
+  <!-- home section ends -->
+
+
+
+  <!-- about section starts  -->
+
+   <section class="about" id="about">
+
+    <div class="image">
+      <img src="images/Apartment rent.gif" alt="">
+    </div>
+
+    <div class="content">
+      <h1 class="heading">About</h1>
+      <h3>Lower Priced Accomodation !</h3>
+      <p>Well-guarded in campus accomodation facilities with lot of advantages ! </p>
+      <ul>
+        <li> <i class="fas fa-check-double"></i> Free Wifi Everywhere</li>
+        <li> <i class="fas fa-check-double"></i> Mess </li>
+        <li> <i class="fas fa-check-double"></i> Gym </li>
+        <li> <i class="fas fa-check-double"></i> Sports</li>
+        
+      </ul>
+    </div>
+
+  </section> 
+
+  <!-- about section ends -->
+
+  <!-- features section starts  -->
+
+  <section class="features" id="features">
+
+    <h1 class="heading">FACILITIES</h1>
+
+    <h1 class="title">Outstanding features</h1>
+
+    <p class="description">You will Enjoy a lot If you choose our hostel !</p>
+
+    <div class="box-container">
+
+      <div class="box">
+        <i class="fas fa-wifi"></i>
+        <h3>Wifi facility</h3>
+        <p>Our hostel will provide you free wifi facilites with unlimited plans !</p>
+      </div>
+
+      <div class="box">
+       <i class="fas fa-utensils"></i>
+        <h3>Mess</h3>
+        <p>Mess is also included in hostel services and it is just 200 metres away from the hostel !</p>
+      </div>
+
+      <div class="box">
+       <i class="fas fa-dumbbell"></i>
+        <h3>Gym</h3>
+        <p>Gym is also free of cost and gym trainer is also there which will guide students how to maintain there fitness ! </p>
+      </div>
+
+      <div class="box">
+       <i class="fas fa-table-tennis"></i>
+        <h3>Sports</h3>
+        <p>Our Hostel provides you lot of facilites for sports like table-tennis, badminton, Cricket and many more !</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  
+
+   
+   
+
+
+
+   <!-- footer section starts  -->
+   <div class="footer">
+     <div class="box-container">
+       <div class="box">
+         <h3 btnnn>About us</h3>
+         <p btnnn>An Engineering college established in 1983, Pune Institute of Computer Technology (PICT) has been one of the leading institutes in Information Technology education and research.
+           The college is well known as a reputed institute for under-graduate programs in Computer Engineering, Electronics & Telecommunication Engineering, and Information Technology
+         </p>
+       </div>
+       <div class="box">
+         <h3 btnnn>Quick links</h3>
+         <a btnnn href="#home">Home</a>
+         <a btnnn  href="#features">Features</a>
+         <a btnnn href="#about">About</a>
+         
+       </div>
+       <div class="box">
+         <h3 btnnn>follow us</h3>
+         <a btnnn href="https://pict.edu/">Facebook</a>
+         <a btnnn href="https://pict.edu/">Instagram</a>
+         <a btnnn href="https://pict.edu/">Twitter</a>
+         
+       </div>
+       <div class="box">
+         <h3 btnnn>Contact info</h3>
+         <div class="info">
+          
+           <p btnnn> +91 20 24371101, 24372041, 24378063, 24376190, 24372479 </p>
+         </div>
+         <div class="info">
+         
+           <p> Survey No. 27, Near Trimurti Chowk, Dhankawadi,
+
+             Pune-411043, Maharashtra (India).</p>
+         </div>
+        
+       </div>
+     </div>
+     <h1 class="credit"> &copy; Abhishek Dhar </h1>
+   </div>
+   <!-- footer section ends -->
+
+
+
+
+
+
+  <!-- jquery cdn link  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- custom js file link  -->
+  <script src="js/home.js"></script>
+
+
+   <!-- JS -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  
+
+</body>
+
+</html>

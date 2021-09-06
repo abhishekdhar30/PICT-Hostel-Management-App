@@ -1,0 +1,210 @@
+<%-include("../navigation")-%>
+
+<link rel="stylesheet" href="css/style.css">
+
+
+
+
+<h1 class="text-center mb-2">Add Student !</h1>
+
+<div class="container">
+ <div class="row justify-content-center">
+   <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12">
+
+
+      <!-- error message start -->
+      <div class="mb-4 alert-messages">
+        <%if(success.length>0){%>
+        <div class="alert success">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          <%=success%>
+        </div>
+        <%}else{%>
+        <%if(danger.length>0){%>
+        <div class="alert fail">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          <%=danger%>
+        </div>
+        <%}%>
+                        <%}%>
+      </div>
+      <!-- end -->
+
+<form method="POST" action="/addstudent">
+  <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="row mb-2">
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="name" class="form-control" name="name" />
+        <label class="form-label" for="name">Full name *</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="city" class="form-control" name="city" />
+        <label class="form-label" for="city">City *</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="contactno" class="form-control" name="contact" />
+        <label class="form-label" for="contactno">Student Contact no *</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-outline">
+        <input type="text" id="fatherscontactno" class="form-control" name="fcontact" />
+        <label class="form-label" for="fatherscontactno">Father's Contact no *</label>
+      </div>
+    </div>
+  </div>
+
+
+   <div class="row mb-2">
+     <div class="col">
+       <div class="form-outline">
+         <input type="text" id="email" class="form-control" name="email" />
+         <label class="form-label" for="email">Student Email *</label>
+       </div>
+     </div>
+     <div class="col">
+       <div class="form-outline">
+         <input type="text" id="fathersemail" class="form-control" name="femail" />
+         <label class="form-label" for="fathersemail">Father's Email *</label>
+       </div>
+     </div>
+   </div>
+
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" id="room" class="form-control" name="room" />
+          <label class="form-label" for="room">Room No *</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <select type="text" id="status" class="form-control" name="status" >
+
+            <option value="Hostel">Hostel</option>
+            <option value="Outside">Outside</option>
+            <option value="Home">Home</option>
+            <option value="Holiday">Holiday</option>
+
+          </select>
+          <label class="form-label" for="status">Status *</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mb-2">
+      <div class="col">
+        <div class="form-outline">
+          <input type="number" id="hostelfee" class="form-control" name="hostelfee" value="0" />
+          <label class="form-label" for="hostelfee">Hostel fee *</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="number" id="amountpaid" class="form-control" name="amountpaid" value="0" />
+          <label class="form-label" for="amountpaid">Amount paid *</label>
+        </div>
+      </div>
+    </div>
+
+
+
+  <!-- Email input -->
+  <div class="form-outline mb-2">
+    <textarea type="email" id="address" class="form-control" rows="2" name="address"></textarea>
+    <label class="form-label" for="address">Address *</label>
+  </div>
+
+ 
+
+
+
+  <!-- Submit button -->
+  <div class="flex">
+  <button type="button" class="btnnn mb-4" data-bs-toggle="modal" data-bs-target="#static">Add Student</button>
+  <button type="reset" class="resett mb-4">Reset</button>
+ </div>
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Student</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure that you have filled all the information of student correctly ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Add Student</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+ 
+</form>
+
+</div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Abhishek Dhar</span>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer -->
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>

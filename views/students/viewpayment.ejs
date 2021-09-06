@@ -1,0 +1,128 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+   <%-include("../navigation")-%>
+
+<!-- 
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <link href="css/style.css" rel="stylesheet">
+
+
+ <h1 class="text-center mb-4">Payment Gateway !</h1>
+
+ <br/><br/><br/>
+
+ <div class="container">
+   <div class="row justify-content-center">
+     <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12">
+
+
+         <!-- error message start -->
+         <div class="mb-4 alert-messages">
+           <%if(success.length>0){%>
+           <div class="alert success">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             <%=success%>
+           </div>
+           <%}else{%>
+           <%if(danger.length>0){%>
+           <div class="alert fail">
+             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+             <%=danger%>
+           </div>
+           <%}%>
+                        <%}%>
+         </div>
+         <!-- end -->
+
+    <form method="POST" action="/paymentgateway">
+         <!-- 2 column grid layout with text inputs for the first and last names -->
+         <div class="row mb-4">
+           <div class="col">
+             <div class="form-outline">
+               <input type="text" id="name" class="form-control" name="name" />
+               <label class="form-label" for="name">Full name *</label>
+             </div>
+           </div>
+           <div class="col">
+             <div class="form-outline">
+               <input type="text" id="email" class="form-control" name="email" />
+               <label class="form-label" for="email">Email *</label>
+             </div>
+           </div>
+         </div>
+
+        
+
+
+         <div class="row mb-5">
+           <div class="col">
+             <div class="form-outline">
+               <input type="text" id="contact" class="form-control" name="contact" />
+               <label class="form-label" for="contact">Contact *</label>
+             </div>
+           </div>
+           <div class="col">
+             <div class="form-outline">
+               <input type="number" id="amount" class="form-control" name="amount" />
+               <label class="form-label" for="amount">Amount to pay *</label>
+             </div>
+           </div>
+         </div>
+
+
+         <!-- Submit button -->
+         <div class="flex">
+           <button id="pay" class="btnnn mb-4">Pay</button>
+           <button type="reset" class="resett mb-4">Reset</button>
+         </div>
+
+
+
+
+     </div>
+   </div>
+ </div>
+
+
+</form>
+
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Abhishek Dhar</span>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer -->
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>

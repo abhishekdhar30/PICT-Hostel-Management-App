@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 //structure of database
-const userSchema = mongoose.Schema(
+const userSch = mongoose.Schema(
   {
     name: {
       type: String,
@@ -11,34 +11,48 @@ const userSchema = mongoose.Schema(
       type: String,
       // required: true,
     },
-    room:{
-      type:String,
+    room: {
+      type: String,
     },
-    fathersemail:{
-      type:String,
+    fathersemail: {
+      type: String,
     },
-    email:{
-      type:String,
+    email: {
+      type: String,
     },
-    address:{
-      type:String
+    address: {
+      type: String,
     },
-    city:{
-      type:String
+    city: {
+      type: String,
     },
-    contact:{
-      type:String
+    contact: {
+      type: String,
     },
-    fatherscontact:{
-      type:String
-    }
-   
+    fatherscontact: {
+      type: String,
+    },
+    count: {
+      type: Number,
+      default: 0,
+    },
+    address: {
+      type: String,
+    },
+    fee: {
+      type: Number,
+      default:0,
+    },
+    amountpaid: {
+      type: Number,
+      default:0,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSch);
 
 module.exports = User;

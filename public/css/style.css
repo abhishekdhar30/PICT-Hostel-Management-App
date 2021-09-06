@@ -1,5 +1,209 @@
-.contact-cover-img {
+/* .contact-cover-img {
     object-fit: cover;
     width: 100%;
     height: 200px;
 }
+
+ */
+
+
+/* datatable */
+
+   /* .dataTables_wrapper .dataTables_paginate .paginate_button {
+                padding: 4px 10px;
+            }
+            .dataTables_wrapper .dataTables_paginate {
+                padding-top: 10px;
+            }
+            table.dataTable {
+                border-collapse: collapse;
+            }
+            .dataTables_wrapper .dataTables_length {
+                padding-bottom: 10px;
+                padding-top: 6px;
+            }
+            div.dataTables_wrapper div.dataTables_filter {
+                padding-bottom: 10px;
+            }
+            table.dataTable thead .sorting:before, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_desc_disabled:before {
+                right: 1em;
+                content: "↑";
+                display: none;
+            }
+            table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+                right: .5em;
+                content: "↓";
+                display: none;
+            }
+            .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+                background-color: transparent !important;
+                background: transparent !important;
+            } */
+
+  /*              end's here           */
+
+
+
+.btnnn{
+    width:200px;
+    height:40px;
+    background-color: #4e73df;
+    color:white;
+    border-radius: 5px;
+    border:none;
+
+}
+
+
+
+.btnnn:hover{
+    color:#4e73df;
+    background-color:white;
+    border:0.5px solid  #4e73df;
+    transition: all .35s;
+   
+}
+
+
+
+.resett{
+    width:200px;
+    height:40px;
+    background-color: #e74a3b;
+    color:white;
+    border-radius: 5px;
+    border:none;
+
+}
+
+
+
+.resett:hover{
+    color:#4e73df;
+    background-color:white;
+    border:0.5px solid  #e74a3b;
+    transition: all .35s;
+   
+}
+
+
+
+/* For displaying error and success messages */
+.alert-messages .success {
+    background-color: #2FB986;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-messages .fail {
+    background-color: #f44336;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-messages .closebtn {
+    cursor: pointer;
+    padding-right: 8px;
+    font-size: 16px !important;
+    font-style: normal !important;
+    color: #ffffff !important;
+}
+
+
+.dangerr{
+    width:200px;
+    height:40px;
+    background-color: white;
+    border:1px solid  #e74a3b;
+    color:#e74a3b;
+    border-radius: 5px;
+   
+
+}
+
+
+
+.dangerr:hover{
+    color:white;
+    background-color:#e74a3b;
+    border:0.5px solid  #e74a3b;
+    transition: all .35s;
+   
+}
+
+
+
+
+.flex{
+    display:flex;
+    justify-content: space-around;
+    
+}
+
+
+@media(max-width:700px){
+    .flex{
+        display: flex;
+    
+        flex-direction:column;
+      
+    }
+
+    .btnnn,.resett{
+        align-self: center;
+    }
+    
+}
+
+select {
+/* 
+  appearance: none;
+  background-color: transparent;
+  border: none; */
+   border:0.3px solid white;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  /* font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit; */
+}
+
+
+.flexx{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+
+@media(max-width:700px){
+    .flexx{
+        display: flex;
+    
+        flex-direction:column;
+      
+    }
+
+    .btnnn,.dangerr{
+        align-self: center;
+        margin-bottom: 20px;
+    }
+    
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+
+
+

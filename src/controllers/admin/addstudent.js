@@ -127,7 +127,7 @@ const postaddstudent = async function (req, res) {
   
   else {
     Profile.findOne({ username: email }, async function (err, user) {
-      console.log(user);
+      
 
       if (user) {
         req.flash("error", `User already exists !`);

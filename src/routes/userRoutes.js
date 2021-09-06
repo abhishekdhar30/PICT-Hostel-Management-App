@@ -17,6 +17,7 @@ const { changeprofile, postchangeprofile } = require("../controllers/changeprofi
 const studentdashboard=require("../controllers/students/studentdashboard");
 const { paymentgateway, postpaymentgateway } = require("../controllers/students/viewpayment");
 const verify = require("../controllers/students/verify");
+const { changepassword ,postchangepassword} = require("../controllers/admin/newpassword");
 
 
 //set up express router
@@ -45,8 +46,9 @@ router.route("/addstudent").get(isauthenticated,admin, addstudent).post(isauthen
 router.route("/attendance").get(isauthenticated,admin, attendance).post(isauthenticated,admin,postattendance);
 router.route("/payment").get(isauthenticated,admin, payment).post(isauthenticated,admin,postpayment);
 router.route("/addadmin").get(isauthenticated,admin, addadmin).post(isauthenticated,admin,postaddadmin);
- router.route("/edit").get(isauthenticated,admin, edit).post(isauthenticated,admin,postedit);
- router.route("/dashboard").get(isauthenticated, admin, dashboard);
+router.route("/edit").get(isauthenticated,admin, edit).post(isauthenticated,admin,postedit);
+router.route("/dashboard").get(isauthenticated, admin, dashboard);
+router.route("/changepassword").get(isauthenticated, admin, changepassword).post(isauthenticated, admin, postchangepassword);
 
 
 //Students Pages

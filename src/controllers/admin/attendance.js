@@ -2,6 +2,9 @@ const User = require("../../models/addstudentModels");
 const Attendance = require("../../models/attendance");
 const moment = require("moment");
 const sendingMail = require("../../nodemailer/mail");
+const attendancemessage = require("../../nodemailer/messages/attendancemessage");
+
+
 
 const attendance = function (req, res) {
 
@@ -146,7 +149,36 @@ const postattendance = async function (req, res) {
     newAttendance.save();
   }
 
-     req.flash("success", `Attendance of ${date} is successfully being marked !`);
+
+
+Attendance.findOne({date:date},async function(err,allAttendance){
+
+      if (allAttendance) {
+
+        for (const [key, value] of allAttendance.attendance) {
+
+              if(value=="Outside")
+              {
+                  User.findOne({_id:key},async function(err,user){
+                      if(user)
+                      {
+                        console.log(user);
+                        let message= await attendancemessage(user.name,user.fathersemail);
+                         sendingMail(message);
+                      }
+                  })
+              }
+        }
+      }
+
+})
+
+
+
+
+
+
+     req.flash("success", `Attendance of ${date} is successfully being marked and those who are not present in the hostel, the mail has been successfully sended to their parents !`);
 
   // User.find({}, function (err, users) {
   //   users.forEach(function (user) {

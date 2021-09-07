@@ -6,10 +6,9 @@ const admin = async(req, res, cb) => {
  
   if (user && user.isAdmin=="true") {
      cb(null);
-    // next();
   } else {
-    // res.render("home");
-    
+     res.render("404");
+      
   }
 };
 

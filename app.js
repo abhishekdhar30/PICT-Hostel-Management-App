@@ -32,10 +32,17 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+connectDB();
+
 //this is for all routes and its code is in src/models/userModel.js
 app.use("/", userRoutes);
 
-connectDB();
+
+
+app.get("*", function (req, res) {
+  res.render("404");
+});
+
 
 const port = process.env.PORT || 3000;
 

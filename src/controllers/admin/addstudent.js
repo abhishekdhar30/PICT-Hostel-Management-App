@@ -1,8 +1,9 @@
 const User = require("../../models/addstudentModels");
 const Attendance = require("../../models/attendance");
 const Profile = require("../../models/users");
-var randtoken = require("rand-token");
+// var randtoken = require("rand-token");
 const passport = require("passport");
+var generator = require("generate-password");
 
 var sendingMail = require("../../nodemailer/mail");
 const userMessage = require("../../nodemailer/messages/user");
@@ -151,9 +152,14 @@ const postaddstudent = async function (req, res) {
 
         user.save();
 
-        var token = randtoken.generate(64);
+        // var token = randtoken.generate(64);
 
-        Profile.register({ username: email }, token, function (err, user) {
+        var password = generator.generate({
+          length: 20,
+          numbers: true,
+        });
+
+        Profile.register({ username: email }, password, function (err, user) {
           if (err) {
             console.log(err);
           } else {
@@ -177,7 +183,7 @@ const postaddstudent = async function (req, res) {
           }
         });
 
-        let message = await userMessage(email, token);
+        let message = await userMessage(email, password);
 
         sendingMail(message);
 

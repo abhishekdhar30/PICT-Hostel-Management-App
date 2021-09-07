@@ -5,9 +5,7 @@ module.exports = function sendingMail(message) {
   const transporter = nodeMailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
-    // port: 465,
-    // secure: false,
-    port: 587,
+    port: 465,
     secure: false,
     auth: {
       user: process.env.MAIL_ID,

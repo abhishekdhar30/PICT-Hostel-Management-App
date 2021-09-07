@@ -10,6 +10,11 @@ async function attendancemessage(name,fathersemail) {
 
     html: `
         Your ward ${name} is absent today !
+
+         <br><br><br><br>
+       
+        Thanks<br>
+        Regards: Pune Institute of Computer Technology
  `,
   };
 

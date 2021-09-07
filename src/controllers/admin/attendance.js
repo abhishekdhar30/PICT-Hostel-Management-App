@@ -163,7 +163,9 @@ Attendance.findOne({date:date},async function(err,allAttendance){
                       if(user)
                       {
                         console.log(user);
+                     
                         let message= await attendancemessage(user.name,user.fathersemail);
+                      
                          sendingMail(message);
                       }
                   })

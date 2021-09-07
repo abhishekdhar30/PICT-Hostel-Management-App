@@ -1,7 +1,8 @@
 const Profile = require("../../models/users");
-var randtoken = require("rand-token");
+// var randtoken = require("rand-token");
 const userMessage = require("../../nodemailer/messages/user");
 const sendingMail = require("../../nodemailer/mail");
+var generator = require("generate-password");
 
 const changepassword = function (req, res) {
 
@@ -27,56 +28,24 @@ const changepassword = function (req, res) {
 
 const postchangepassword = async function (req, res) {
 
-console.log(req.body);
 
-let email=req.body.profile;
 let buttonvalue=req.body.mail;
- var token = randtoken.generate(64);
-if(typeof(email)=="string")
-{
+//  var token = randtoken.generate(64);
 
+var password = generator.generate({
+  length: 20,
+  numbers: true,
+});
 
-  Profile.findByUsername(email).then(
-    function (sanitizedUser) {
-      if (sanitizedUser) {
-        sanitizedUser.setPassword(token, async function () {
-          sanitizedUser.save();
-          
-
-        let message = await userMessage(email, token);
-
-           sendingMail(message);
-         req.flash("success", `Password of ${email} is reset successfully !`);
-         return res.redirect("/changepassword");
-        });
-      } else {
-        // console.log('This user does not exist');
-        req.flash("error", "User does not exist!");
-        return res.redirect("/changepassword");
-        //   return res.redirect("/forget");
-      }
-    },
-    function (err) {
-      // console.log(err);
-      if (err) console.log(err);
-      req.flash("error", "Error occured! Please contact developer");
-      return res.redirect("/changepassword");
-    }
-  );
-
-
-}
-else
-{
-   Profile.findByUsername(email[buttonvalue]).then(
+   Profile.findByUsername(buttonvalue).then(
      function (sanitizedUser) {
        if (sanitizedUser) {
-         sanitizedUser.setPassword(token, async function () {
+         sanitizedUser.setPassword(password, async function () {
            sanitizedUser.save();
-    let message = await userMessage(email[buttonvalue], token);
+    let message = await userMessage(buttonvalue, password);
 
     sendingMail(message);
-           req.flash("success", `Password of ${email[buttonvalue]} is reset successfully !`);
+           req.flash("success", `Password of ${buttonvalue} is reset successfully !`);
            return res.redirect("/changepassword");
          });
        } else {
@@ -95,8 +64,6 @@ else
    );
 
 
-
-}
 
 
 };

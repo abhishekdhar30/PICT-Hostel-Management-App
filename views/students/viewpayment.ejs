@@ -79,7 +79,7 @@
 
          <!-- Submit button -->
          <div class="flex">
-           <button id="pay" class="btnnn mb-4">Pay</button>
+           <button id="pay" type="button" class="btnnn mb-4" data-bs-toggle="modal" data-bs-target="#static">Pay</button>
            <button type="reset" class="resett mb-4">Reset</button>
          </div>
 
@@ -89,6 +89,31 @@
      </div>
    </div>
  </div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pay</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" data-bs-dismiss="modal">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure that you have filled all the information of student correctly ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Proceed</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 </form>

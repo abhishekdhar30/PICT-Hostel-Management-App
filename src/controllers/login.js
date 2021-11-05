@@ -88,12 +88,12 @@ const postlogin = function (req, res) {
   {
 
 
-    if(req.body.token!=process.env.SIGNUP_TOKEN)
-    {
-       req.flash("error", `Error: Yoh have entered Wrong Token ! Please contact admin for token`);
-      return  res.redirect("/login");
+    // if(req.body.token!=process.env.SIGNUP_TOKEN)
+    // {
+    //    req.flash("error", `Error: Yoh have entered Wrong Token ! Please contact admin for token`);
+    //   return  res.redirect("/login");
 
-    }
+    // }
     
     if (req.body.password !==req.body.confirm) {
       req.flash(
